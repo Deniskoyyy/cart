@@ -61,6 +61,19 @@
     margin-bottom: 10px;
   }
 
+    /* Стили для кнопок */
+  .order-button {
+    width: 200px; /* Ширина кнопки "Сделать заказ" */
+    height: 50px; /* Высота кнопки "Сделать заказ" */
+    font-size: 18px; /* Размер шрифта кнопки "Сделать заказ" */
+  }
+
+  .copy-order-button {
+    width: 200px; /* Ширина кнопки "Скопировать заказ" */
+    height: 50px; /* Высота кнопки "Скопировать заказ" */
+    font-size: 18px; /* Размер шрифта кнопки "Скопировать заказ" */
+  }
+
   #order-summary {
     white-space: pre-wrap;
   }
@@ -109,10 +122,10 @@
 
   <div id="order-summary"></div>
 
-  <button onclick="makeOrder()">Сделать заказ</button>
+  <button class="order-button" onclick="makeOrder()">Сделать заказ</button>
 
   <div id="order-result"></div>
-  <button onclick="copyOrderToClipboard()">Скопировать заказ</button>
+  <button class="copy-order-button" onclick="copyOrderToClipboard()">Скопировать заказ</button>
 
 
   <script>
