@@ -42,16 +42,15 @@
   }
 
   .quantity-input button {
-    width: 70px;
-    height: 70px;
-    font-size: 50px;
-    padding: 4px;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
   }
 
   .quantity-input input {
-    width: 100px;
-    height: 60px;
-    font-size: 40px;
+    width: 200px;
+    height: 18px;
+    font-size: 24px;
     padding: 4px;
   }
   /* Стили для заказа и магазина */
@@ -248,7 +247,6 @@
           quantityInput.type = "number";
           quantityInput.value = item.quantity;
           quantityInput.min = "0";
-          quantityInput.style.width = "40px";
 
           var decreaseButton = document.createElement("button");
           decreaseButton.innerText = "-";
