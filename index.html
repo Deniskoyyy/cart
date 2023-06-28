@@ -1,166 +1,191 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Онлайн заказы</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    /* Стили для макета страницы */
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
+      margin: 20px;
     }
-
-    .category {
-      margin-bottom: 20px;
+    h1 {
+      text-align: center;
     }
-
-    .category-title {
-      font-size: 24px;
+    .form-group {
       margin-bottom: 10px;
     }
-
+    .form-group label {
+      font-weight: bold;
+    }
     .product {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       margin-bottom: 10px;
     }
-
     .product img {
       width: 100px;
-      height: auto;
+      height: 100px;
       margin-right: 10px;
     }
-
     .product-details {
       flex: 1;
     }
-
     .product-name {
-      font-size: 18px;
-      margin-bottom: 5px;
+      font-weight: bold;
     }
-
-    .product-description {
-      margin-bottom: 5px;
-    }
-
     .quantity-input {
       display: flex;
       align-items: center;
       margin-top: 5px;
     }
-
-    .quantity-input button {
-      font-size: 18px;
-      background-color: #f2f2f2;
-      border: none;
-      cursor: pointer;
-    }
-
     .quantity-input input {
-      font-size: 16px;
       width: 40px;
       text-align: center;
-      border: none;
-      border-radius: 4px;
-      margin: 0 5px;
+      margin-right: 5px;
     }
-
-    .order-button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 20px;
+    .quantity-input button {
+      padding: 2px 5px;
     }
-
     #order-summary {
-      font-size: 16px;
       margin-top: 20px;
-      white-space: pre-line;
+      font-weight: bold;
+    }
+    #order-summary p {
+      margin: 5px 0;
     }
 
-    @media screen and (max-width: 600px) {
+    /* Медиа-запросы для мобильных устройств */
+    @media only screen and (max-width: 600px) {
+      .product {
+        flex-direction: column;
+        align-items: flex-start;
+      }
       .product img {
-        width: 80px;
-        margin-right: 5px;
+        margin-bottom: 10px;
       }
-
-      .product-name {
-        font-size: 16px;
+      .product-details {
+        width: 100%;
+        margin-left: 0;
       }
-
-      .product-description {
-        font-size: 14px;
+      .quantity-input {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
       }
-
-      .quantity-input button {
-        font-size: 14px;
-      }
-
       .quantity-input input {
-        font-size: 14px;
-        width: 30px;
-        margin: 0 3px;
-      }
-
-      .order-button {
-        font-size: 14px;
-      }
-
-      #order-summary {
-        font-size: 14px;
+        width: 60px;
       }
     }
   </style>
 </head>
 <body>
-  <div id="products"></div>
-  <button class="order-button" onclick="makeOrder()">Заказать</button>
+  <h1>Онлайн заказы кофейни</h1>
+
+  <div class="form-group">
+    <label for="coffee-shop">Для какой кофейни делаем заказ:</label>
+    <select id="coffee-shop">
+      <option value="coffee-shop-1">Кофейня 1</option>
+      <option value="coffee-shop-2">Кофейня 2</option>
+    </select>
+  </div>
+
+  <div id="products">
+    <!-- Здесь будут отображаться товары -->
+  </div>
+
   <div id="order-summary"></div>
 
+  <button onclick="makeOrder()">Сделать заказ</button>
+
   <script>
+    // Данные о товарах
     var productsData = [
       {
-        category: "Молочные продукты",
+        category: "Вода и молоко",
         items: [
           {
-            name: "Простоквашино Цельное",
-            description: "Цельное молоко 3,5%",
+            name: "Молоко Кружева 3,2%",
+            description: "Молоко с жирностью 3,2% в упаковке 1 литр.",
+            image: "milk.jpg",
+            quantity: 5,
             unit: "л"
           },
           {
-            name: "Сыр Российский",
-            description: "Сыр твердый",
-            unit: "кг"
+            name: "Тоник Evervess",
+            description: "Освежающий тоник Evervess, 1 литр.",
+            image: "tonic.jpg",
+            quantity: 15,
+            unit: "л"
           }
         ]
       },
       {
-        category: "Овощи и фрукты",
+        category: "Мороженое",
         items: [
           {
-            name: "Помидоры",
-            description: "Сорт: Голден",
-            unit: "кг"
+            name: "Мороженое без сметаны",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "ice-cream.jpg",
+            quantity: 8,
+            unit: "порция"
+          }
+        ]
+      },
+      {
+        category: "Альтернативное молоко",
+        items: [
+          {
+            name: "Альпро Кокос",
+            description: "Кокосовое молоко Alpro, 1 литр.",
+            image: "coconut-milk.jpg",
+            quantity: 12,
+            unit: "л"
           },
           {
-            name: "Огурцы",
-            description: "Сорт: Салатный",
-            unit: "кг"
+            name: "Альпро Банан",
+            description: "Банановое молоко Alpro, 1 литр.",
+            image: "banana-milk.jpg",
+            quantity: 7,
+            unit: "л"
+          },
+          {
+            name: "Альпро Миндаль",
+            description: "Миндальное молоко Alpro, 1 литр.",
+            image: "almond-milk.jpg",
+            quantity: 10,
+            unit: "л"
+          }
+        ]
+      },
+      {
+        category: "Расходники",
+        items: [
+          {
+            name: "Вилки",
+            description: "Пакет вилок для кофейни, 100 шт.",
+            image: "forks.jpg",
+            quantity: 20,
+            unit: "упак"
+          },
+          {
+            name: "Палочки для мешалок",
+            description: "Пакет палочек для мешалок, 500 шт.",
+            image: "stirrers.jpg",
+            quantity: 30,
+            unit: "упак"
+          },
+          {
+            name: "Трубочки",
+            description: "Пакет трубочек, 200 шт.",
+            image: "straws.jpg",
+            quantity: 25,
+            unit: "упак"
           }
         ]
       }
     ];
 
+    // Функция для отображения товаров
     function displayProducts() {
       var productsContainer = document.getElementById("products");
 
@@ -174,14 +199,15 @@
         categoryElement.appendChild(categoryTitle);
 
         var categoryContent = document.createElement("div");
+        categoryContent.classList.add("category-content");
 
         category.items.forEach(function(item) {
           var productElement = document.createElement("div");
           productElement.classList.add("product");
 
-          var productImage = document.createElement("img");
-          productImage.src = "placeholder.png";
-          productElement.appendChild(productImage);
+          var imageElement = document.createElement("img");
+          imageElement.src = item.image;
+          productElement.appendChild(imageElement);
 
           var detailsElement = document.createElement("div");
           detailsElement.classList.add("product-details");
@@ -192,39 +218,48 @@
           detailsElement.appendChild(nameElement);
 
           var descriptionElement = document.createElement("div");
-          descriptionElement.classList.add("product-description");
           descriptionElement.innerText = item.description;
           detailsElement.appendChild(descriptionElement);
 
-          var quantityInput = document.createElement("div");
-          quantityInput.classList.add("quantity-input");
+          var quantityElement = document.createElement("div");
+          quantityElement.innerText = "Количество: ";
+
+          var quantityInput = document.createElement("input");
+          quantityInput.type = "number";
+          quantityInput.value = item.quantity;
+          quantityInput.min = "0";
+          quantityInput.style.width = "40px";
 
           var decreaseButton = document.createElement("button");
           decreaseButton.innerText = "-";
-          decreaseButton.onclick = function() {
-            var input = this.nextElementSibling;
-            var quantity = parseInt(input.value);
-            if (quantity > 0) {
-              input.value = quantity - 1;
+          decreaseButton.style.padding = "2px 5px";
+          decreaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 0) {
+              quantityInput.value = currentValue - 1;
             }
-          };
-          quantityInput.appendChild(decreaseButton);
-
-          var quantityValue = document.createElement("input");
-          quantityValue.type = "number";
-          quantityValue.min = "0";
-          quantityValue.value = "0";
-          quantityInput.appendChild(quantityValue);
+          });
 
           var increaseButton = document.createElement("button");
           increaseButton.innerText = "+";
-          increaseButton.onclick = function() {
-            var input = this.previousElementSibling;
-            input.value = parseInt(input.value) + 1;
-          };
-          quantityInput.appendChild(increaseButton);
+          increaseButton.style.padding = "2px 5px";
+          increaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+          });
 
-          detailsElement.appendChild(quantityInput);
+          var quantityInputGroup = document.createElement("div");
+          quantityInputGroup.classList.add("quantity-input");
+          quantityInputGroup.appendChild(decreaseButton);
+          quantityInputGroup.appendChild(quantityInput);
+          quantityInputGroup.appendChild(increaseButton);
+
+          quantityElement.appendChild(quantityInputGroup);
+          detailsElement.appendChild(quantityElement);
+
+          var unitElement = document.createElement("div");
+          unitElement.innerText = "Единица измерения: " + item.unit;
+          detailsElement.appendChild(unitElement);
 
           productElement.appendChild(detailsElement);
           categoryContent.appendChild(productElement);
@@ -235,38 +270,59 @@
       });
     }
 
-    function getProductUnit(productName) {
-      for (var i = 0; i < productsData.length; i++) {
-        var category = productsData[i];
-        for (var j = 0; j < category.items.length; j++) {
-          var item = category.items[j];
-          if (item.name === productName) {
-            return item.unit;
-          }
+    // Функция для создания заказа
+    function makeOrder() {
+      var coffeeShopSelect = document.getElementById("coffee-shop");
+      var selectedCoffeeShop = coffeeShopSelect.value;
+
+      var orderSummary = document.getElementById("order-summary");
+      orderSummary.innerHTML = ""; // Очистка предыдущего заказа
+
+      var selectedProducts = [];
+      var productElements = document.getElementsByClassName("product");
+
+      Array.from(productElements).forEach(function(productElement) {
+        var nameElement = productElement.getElementsByClassName("product-name")[0];
+        var quantityInput = productElement.getElementsByTagName("input")[0];
+
+        var productName = nameElement.innerText;
+        var quantity = parseInt(quantityInput.value);
+
+        if (quantity > 0) {
+          selectedProducts.push({ name: productName, quantity: quantity });
         }
+      });
+
+      if (selectedProducts.length === 0) {
+        orderSummary.innerText = "Ваш заказ пуст.";
+      } else {
+        var summaryText = "Заказ для кофейни: " + selectedCoffeeShop + "\n\n";
+        summaryText += "Выбранные товары:\n";
+
+        selectedProducts.forEach(function(product) {
+          summaryText += product.name + " - " + product.quantity + " ед. (" + getProductUnit(product.name) + ")\n";
+        });
+
+        orderSummary.innerText = summaryText;
       }
-      return "";
     }
 
-    function makeOrder() {
-      var orderSummary = document.getElementById("order-summary");
-      orderSummary.innerText = "";
+    // Вспомогательная функция для получения единицы измерения товара
+    function getProductUnit(productName) {
+      var unit = "";
 
-      var summaryText = "";
       productsData.forEach(function(category) {
         category.items.forEach(function(item) {
-          var product = {
-            name: item.name,
-            quantity: parseInt(document.querySelector(`div.product-name:contains('${item.name}')`).nextElementSibling.querySelector("input").value)
-          };
-          var unit = getProductUnit(product.name);
-          summaryText += product.name + " - " + product.quantity + " - " + unit + "\n";
+          if (item.name === productName) {
+            unit = item.unit;
+          }
         });
       });
 
-      orderSummary.innerText = summaryText;
+      return unit;
     }
 
+    // Вызов функции для отображения товаров при загрузке страницы
     displayProducts();
   </script>
 </body>
