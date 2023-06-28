@@ -81,13 +81,13 @@
 </head>
 <div id="container">
 <body>
-  <h1>Онлайн заказы кофейни</h1>
+  <h1>Заказы Coffee Like</h1>
 
   <div class="form-group">
     <label for="coffee-shop">Для какой кофейни делаем заказ:</label>
     <select id="coffee-shop">
-      <option value="coffee-shop-1">Кофейня 1</option>
-      <option value="coffee-shop-2">Кофейня 2</option>
+      <option value="В Охта Молл на подземную зону разгрузки:">Охта Молл, 3 этаж</option>
+      <option value="На парковку со стороны ул. Магнитогорской:">Фудтрак</option>
     </select>
   </div>
 
@@ -298,8 +298,7 @@
       if (selectedProducts.length === 0) {
         orderSummary.innerText = "Ваш заказ пуст.";
       } else {
-        var summaryText = "Заказ для кофейни: " + selectedCoffeeShop + "\n\n";
-        summaryText += "Выбранные товары:\n";
+        var summaryText = selectedCoffeeShop + "\n\n";
 
         selectedProducts.forEach(function(product) {
           summaryText += product.name + " - " + product.quantity + " ед. (" + getProductUnit(product.name) + ")\n";
