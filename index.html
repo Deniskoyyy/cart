@@ -125,37 +125,52 @@
             name: "Молоко Кружева 3,2%",
             description: "Заказывать кратно 12 л (48, 60, 72 и т.д.)",
             image: "pictures/milk.jpg",
-            quantity: 5,
+            quantity: 0,
+            unit: "л"
+          },
+          {
+            name: "Сливки Эконива 10%",
+            description: "Заказывать кратно 12 л (12, 24 и т.д.)",
+            image: "pictures/cream.jpg",
+            quantity: 0,
             unit: "л"
           },
           {
             name: "Вода святой источник 0,5л негаз",
             description: "Заказывать кратно 12 шт (12, 24 и т.д.)",
             image: "pictures/saint05still.jpg",
-            quantity: 5,
+            quantity: 0,
             unit: "шт"
           },
           {
             name: "Вода святой источник 0,5л газ",
             description: "Заказывать кратно 12 шт (12, 24 и т.д.)",
             image: "pictures/saint05sparkling.jpg",
-            quantity: 5,
+            quantity: 0,
             unit: "шт"
           },
           {
             name: "Вода святой источник 1,5л газ",
             description: "Заказывать кратно 6 шт (6, 12 и т.д.)",
             image: "pictures/saint15sparkling.jpg",
-            quantity: 5,
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Вода в бутылях 19л",
+            description: "Заказывать кратно 12 л (48, 60, 72 и т.д.)",
+            image: "pictures/water19.jpg",
+            quantity: 0,
             unit: "шт"
           },
           {
             name: "Тоник Evervess",
             description: "Освежающий тоник Evervess, 1 литр.",
             image: "pictures/tonic.jpg",
-            quantity: 15,
+            quantity: 0,
             unit: "л"
-          }
+          },
+
         ]
       },
       {
@@ -165,44 +180,33 @@
             name: "Альпро Кокос",
             description: "Кокосовое молоко Alpro, 1 литр.",
             image: "pictures/coconut-milk.jpg",
-            quantity: 12,
+            quantity: 0,
             unit: "л"
           },
           {
             name: "Альпро Банан",
             description: "Банановое молоко Alpro, 1 литр.",
             image: "pictures/banana-milk.jpg",
-            quantity: 7,
+            quantity: 0,
             unit: "л"
           },
           {
             name: "Альпро Миндаль",
             description: "Миндальное молоко Alpro, 1 литр.",
             image: "pictures/almond-milk.jpg",
-            quantity: 10,
+            quantity: 0,
             unit: "л"
           },
           {
             name: "Альпро Фундук",
             description: "Миндальное молоко Alpro, 1 литр.",
             image: "pictures/hazelnut-milk.jpg",
-            quantity: 10,
+            quantity: 0,
             unit: "л"
           }
         ]
       },
-      {
-        category: "Мороженое без ЗМЖ",
-        items: [
-          {
-            name: "Мороженое без ЗМЖ",
-            description: "Вкусное мороженое без сметаны, 1 порция.",
-            image: "pictures/ice-cream.jpg",
-            quantity: 8,
-            unit: "ванночка"
-          }
-        ]
-      },
+
       {
         category: "Расходники",
         items: [
@@ -210,39 +214,218 @@
             name: "Салфетки бумажные",
             description: "Пакет вилок для кофейни, 100 шт.",
             image: "pictures/napkins.jpg",
-            quantity: 20,
+            quantity: 0,
             unit: "упак"
+          },
+          {
+            name: "Спанлейс рулон",
+            description: "Пакет вилок для кофейни, 100 шт.",
+            image: "pictures/spunlace.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Пакеты для мусора 120л",
+            description: "Пакет трубочек, 200 шт.",
+            image: "pictures/bags120.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Пакеты для мусора 160л",
+            description: "Пакет трубочек, 200 шт.",
+            image: "pictures/bags160.jpg",
+            quantity: 0,
+            unit: "шт"
           },
           {
             name: "Вилки",
             description: "Пакет вилок для кофейни, 100 шт.",
             image: "pictures/forks.jpg",
-            quantity: 20,
+            quantity: 0,
             unit: "упак"
           },
           {
-            name: "Палочки для мешалок",
+            name: "Палочки деревянные без упаковки",
             description: "Пакет палочек для мешалок, 500 шт.",
             image: "pictures/stirrers.jpg",
-            quantity: 30,
+            quantity: 0,
             unit: "упак"
           },
           {
-            name: "Трубочки",
+            name: "Палочки деревянные в упаковке",
+            description: "Пакет палочек для мешалок, 500 шт.",
+            image: "pictures/stirrerspacked.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Трубочки для напитков в упаковке",
+            description: "Пакет трубочек, 200 шт.",
+            image: "pictures/strawspacked.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Трубочки для напитков без упаковки",
             description: "Пакет трубочек, 200 шт.",
             image: "pictures/straws.jpg",
-            quantity: 25,
+            quantity: 0,
             unit: "упак"
           },
           {
             name: "Пакетики для льда",
             description: "Пакет вилок для кофейни, 100 шт.",
             image: "pictures/icebags.jpg",
-            quantity: 20,
+            quantity: 0,
             unit: "упак"
+          },
+          {
+            name: "Тарелки одноразовые бумажные",
+            description: "Пакет вилок для кофейни, 100 шт.",
+            image: "pictures/plates.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Одноразовые полиэтиленовые перчатки",
+            description: "Пакет трубочек, 200 шт.",
+            image: "pictures/gloves.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Губки для посуды",
+            description: "Пакет трубочек, 200 шт.",
+            image: "pictures/sponges.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Средство для мытья посуды Велли",
+            description: "Пакет трубочек, 200 шт.",
+            image: "pictures/velly.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сахар в стиках",
+            description: "Пакет вилок для кофейни, 100 шт.",
+            image: "pictures/sugar.jpg",
+            quantity: 0,
+            unit: "кг"
+          },
+          {
+            name: "Корица",
+            description: "Пакет вилок для кофейни, 100 шт.",
+            image: "pictures/cinnamon.jpg",
+            quantity: 0,
+            unit: "кг"
+          },
+        ]
+      },
+      {
+        category: "Сиропы",
+        items: [
+          {
+            name: "Сироп Herbarista карамель",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/caramel.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista солёная карамель",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/salted.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista кокос",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/coconut.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista банан",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/banana.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista ваниль",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/vanilla.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista шоколад",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/choco.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista Ирландский крем",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/irish.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista миндаль",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/almond.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista клубника",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/strawberry.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista лесной орех",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/nutcracker.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+          {
+            name: "Сироп Herbarista мята",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/mint.jpg",
+            quantity: 0,
+            unit: "шт"
+          },
+
+        ]
+      },
+      {
+        category: "Прочее",
+        items: [
+          {
+            name: "Трубочки вафельные со сгущёнкой",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/waffle.jpg",
+            quantity: 0,
+            unit: "упак"
+          },
+          {
+            name: "Мороженое без ЗМЖ",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "pictures/ice-cream.jpg",
+            quantity: 0,
+            unit: "ванночка"
           }
         ]
-      }
+      },
     ];
 
     // Функция для отображения товаров
