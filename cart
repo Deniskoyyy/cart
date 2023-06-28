@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Онлайн заказы</title>
+  <style>
+    /* Стили для макета страницы */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .product {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .product img {
+      width: 100px;
+      height: 100px;
+      margin-right: 10px;
+    }
+    .product-details {
+      flex: 1;
+    }
+    .product-name {
+      font-weight: bold;
+    }
+    .quantity-input {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+    }
+    .quantity-input input {
+      width: 40px;
+      text-align: center;
+      margin-right: 5px;
+    }
+    .quantity-input button {
+      padding: 2px 5px;
+    }
+    .category {
+      margin-top: 20px;
+    }
+    .category-title {
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .category-content {
+      display: none;
+    }
+    #order-summary {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #order-summary p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Онлайн заказы кофейни</h1>
+
+  <div class="form-group">
+    <label for="coffee-shop">Для какой кофейни делаем заказ:</label>
+    <select id="coffee-shop">
+      <option value="coffee-shop-1">Кофейня 1</option>
+      <option value="coffee-shop-2">Кофейня 2</option>
+    </select>
+  </div>
+
+  <div id="products">
+    <!-- Здесь будут отображаться товары -->
+  </div>
+
+  <div id="order-summary"></div>
+
+  <button onclick="makeOrder()">Сделать заказ</button>
+
+  <script>
+    // Данные о товарах
+    var productsData = [
+      {
+        category: "Вода и молоко",
+        items: [
+          {
+            name: "Молоко Кружева 3,2%",
+            description: "Молоко с жирностью 3,2% в упаковке 1 литр.",
+            image: "milk.jpg",
+            quantity: 5,
+            unit: "л"
+          },
+          {
+            name: "Тоник Evervess",
+            description: "Освежающий тоник Evervess, 1 литр.",
+            image: "tonic.jpg",
+            quantity: 15,
+            unit: "л"
+          }
+        ]
+      },
+      {
+        category: "Мороженое",
+        items: [
+          {
+            name: "Мороженое без сметаны",
+            description: "Вкусное мороженое без сметаны, 1 порция.",
+            image: "ice-cream.jpg",
+            quantity: 8,
+            unit: "порция"
+          }
+        ]
+      },
+      {
+        category: "Альтернативное молоко",
+        items: [
+          {
+            name: "Альпро Кокос",
+            description: "Кокосовое молоко Alpro, 1 литр.",
+            image: "coconut-milk.jpg",
+            quantity: 12,
+            unit: "л"
+          },
+          {
+            name: "Альпро Банан",
+            description: "Банановое молоко Alpro, 1 литр.",
+            image: "banana-milk.jpg",
+            quantity: 7,
+            unit: "л"
+          },
+          {
+            name: "Альпро Миндаль",
+            description: "Миндальное молоко Alpro, 1 литр.",
+            image: "almond-milk.jpg",
+            quantity: 10,
+            unit: "л"
+          }
+        ]
+      },
+      {
+        category: "Расходники",
+        items: [
+          {
+            name: "Вилки",
+            description: "Пакет вилок для кофейни, 100 шт.",
+            image: "forks.jpg",
+            quantity: 20,
+            unit: "упак"
+          },
+          {
+            name: "Палочки для мешалок",
+            description: "Пакет палочек для мешалок, 500 шт.",
+            image: "stirrers.jpg",
+            quantity: 30,
+            unit: "упак"
+          },
+          {
+            name: "Трубочки",
+            description: "Пакет трубочек, 200 шт.",
+            image: "straws.jpg",
+            quantity: 25,
+            unit: "упак"
+          }
+        ]
+      }
+    ];
+
+    // Функция для отображения товаров
+    function displayProducts() {
+      var productsContainer = document.getElementById("products");
+
+      productsData.forEach(function(category) {
+        var categoryElement = document.createElement("div");
+        categoryElement.classList.add("category");
+
+        var categoryTitle = document.createElement("h2");
+        categoryTitle.classList.add("category-title");
+        categoryTitle.innerText = category.category;
+        categoryElement.appendChild(categoryTitle);
+
+        var categoryContent = document.createElement("div");
+        categoryContent.classList.add("category-content");
+
+        category.items.forEach(function(item) {
+          var productElement = document.createElement("div");
+          productElement.classList.add("product");
+
+          var imageElement = document.createElement("img");
+          imageElement.src = item.image;
+          productElement.appendChild(imageElement);
+
+          var detailsElement = document.createElement("div");
+          detailsElement.classList.add("product-details");
+
+          var nameElement = document.createElement("div");
+          nameElement.classList.add("product-name");
+          nameElement.innerText = item.name;
+          detailsElement.appendChild(nameElement);
+
+          var descriptionElement = document.createElement("div");
+          descriptionElement.innerText = item.description;
+          detailsElement.appendChild(descriptionElement);
+
+          var quantityElement = document.createElement("div");
+          quantityElement.innerText = "Количество: ";
+
+          var quantityInput = document.createElement("input");
+          quantityInput.type = "number";
+          quantityInput.value = item.quantity;
+          quantityInput.min = "0";
+          quantityInput.style.width = "40px";
+
+          var decreaseButton = document.createElement("button");
+          decreaseButton.innerText = "-";
+          decreaseButton.style.padding = "2px 5px";
+          decreaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 0) {
+              quantityInput.value = currentValue - 1;
+            }
+          });
+
+          var increaseButton = document.createElement("button");
+          increaseButton.innerText = "+";
+          increaseButton.style.padding = "2px 5px";
+          increaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+          });
+
+          var quantityInputGroup = document.createElement("div");
+          quantityInputGroup.classList.add("quantity-input");
+          quantityInputGroup.appendChild(decreaseButton);
+          quantityInputGroup.appendChild(quantityInput);
+          quantityInputGroup.appendChild(increaseButton);
+
+          quantityElement.appendChild(quantityInputGroup);
+          detailsElement.appendChild(quantityElement);
+
+          var unitElement = document.createElement("div");
+          unitElement.innerText = "Единица измерения: " + item.unit;
+          detailsElement.appendChild(unitElement);
+
+          productElement.appendChild(detailsElement);
+          categoryContent.appendChild(productElement);
+        });
+
+        categoryElement.appendChild(categoryContent);
+        productsContainer.appendChild(categoryElement);
+
+        // Добавление функционала спойлеров
+        categoryTitle.addEventListener("click", function() {
+          if (categoryContent.style.display === "none") {
+            categoryContent.style.display = "block";
+          } else {
+            categoryContent.style.display = "none";
+          }
+        });
+      });
+    }
+
+    // Функция для создания заказа
+    function makeOrder() {
+      var coffeeShopSelect = document.getElementById("coffee-shop");
+      var selectedCoffeeShop = coffeeShopSelect.value;
+
+      var orderSummary = document.getElementById("order-summary");
+      orderSummary.innerHTML = ""; // Очистка предыдущего заказа
+
+      var selectedProducts = [];
+      var productElements = document.getElementsByClassName("product");
+
+      Array.from(productElements).forEach(function(productElement) {
+        var nameElement = productElement.getElementsByClassName("product-name")[0];
+        var quantityInput = productElement.getElementsByTagName("input")[0];
+
+        var productName = nameElement.innerText;
+        var quantity = parseInt(quantityInput.value);
+
+        if (quantity > 0) {
+          selectedProducts.push({ name: productName, quantity: quantity });
+        }
+      });
+
+      if (selectedProducts.length === 0) {
+        orderSummary.innerText = "Ваш заказ пуст.";
+      } else {
+        var summaryText = "Заказ для кофейни: " + selectedCoffeeShop + "\n\n";
+        summaryText += "Выбранные товары:\n";
+
+        selectedProducts.forEach(function(product) {
+          summaryText += product.name + " - " + product.quantity + " " + getProductUnit(product.name) + "\n";
+        });
+
+        orderSummary.innerText = summaryText;
+      }
+    }
+
+    // Вспомогательная функция для получения единицы измерения товара
+    function getProductUnit(productName) {
+      var unit = "";
+
+      productsData.forEach(function(category) {
+        category.items.forEach(function(item) {
+          if (item.name === productName) {
+            unit = item.unit;
+          }
+        });
+      });
+
+      return unit;
+    }
+
+    // Вызов функции для отображения товаров при загрузке страницы
+    displayProducts();
+  </script>
+</body>
+</html>
