@@ -49,9 +49,8 @@
 
   .quantity-input input {
     width: 60px;
-    height: 18px;
-    font-size: 24px;
-    padding: 4px;
+    height: 24px;
+    font-size: 18px;
   }
   /* Стили для заказа и магазина */
   #coffee-shop,
@@ -488,7 +487,7 @@
 
           var decreaseButton = document.createElement("button");
           decreaseButton.innerText = "-";
-          decreaseButton.style.padding = "2px 5px";
+          decreaseButton.style.padding = "0px 5px";
           decreaseButton.addEventListener("click", function() {
             var currentValue = parseInt(quantityInput.value);
             if (currentValue > 0) {
@@ -498,7 +497,7 @@
 
           var increaseButton = document.createElement("button");
           increaseButton.innerText = "+";
-          increaseButton.style.padding = "2px 5px";
+          increaseButton.style.padding = "0px 5px";
           increaseButton.addEventListener("click", function() {
             var currentValue = parseInt(quantityInput.value);
             quantityInput.value = currentValue + 1;
