@@ -3,6 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Онлайн заказы</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
   /* Стили для контейнера */
   #container {
@@ -62,9 +63,9 @@
 
     /* Стили для кнопок */
   .order-button {
-    width: 200px; /* Ширина кнопки "Сделать заказ" */
-    height: 50px; /* Высота кнопки "Сделать заказ" */
-    font-size: 18px; /* Размер шрифта кнопки "Сделать заказ" */
+    width: 200px; /* Ширина кнопки "Сформировать заказ" */
+    height: 50px; /* Высота кнопки "Сформировать заказ" */
+    font-size: 18px; /* Размер шрифта кнопки "Сформировать заказ" */
   }
 
   .copy-order-button {
@@ -72,6 +73,14 @@
     height: 50px; /* Высота кнопки "Скопировать заказ" */
     font-size: 18px; /* Размер шрифта кнопки "Скопировать заказ" */
   }
+
+  .btn-telegram {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+
 
   #order-summary {
     white-space: pre-wrap;
@@ -115,16 +124,25 @@
     </select>
   </div>
 
+
+
   <div id="products">
     <!-- Здесь будут отображаться товары -->
   </div>
 
   <div id="order-summary"></div>
 
-  <button class="order-button" onclick="makeOrder()">Сделать заказ</button>
+  <button class="order-button" onclick="makeOrder()">Сформировать заказ</button>
 
-  <div id="order-result"></div>
-  <button class="copy-order-button" onclick="copyOrderToClipboard()">Скопировать заказ</button>
+<!--  <div id="order-result"></div>-->
+<!--  <button class="copy-order-button" onclick="copyOrderToClipboard()">Скопировать заказ</button>-->
+
+  <div id="telegram"></div>
+  <!-- Кнопка для отправки заказа через Telegram -->
+  <button class="btn-telegram" onclick="sendTelegramOrder()" >Отправить через Telegram</button>
+
+  <div id="responseContainer"></div>
+
 
 
   <script>
@@ -566,16 +584,37 @@
 
     // Функция для копирования заказа
 
-    function copyOrderToClipboard() {
-    var orderSummary = document.getElementById("order-summary").innerText;
-      navigator.clipboard.writeText(orderSummary).then(function() {
-        alert("Заказ скопирован в буфер обмена.");
-      }, function() {
-        alert("Не удалось скопировать заказ.");
-      });
-     }
+    // function copyOrderToClipboard() {
+    // var orderSummary = document.getElementById("order-summary").innerText;
+    //   navigator.clipboard.writeText(orderSummary).then(function() {
+    //     alert("Заказ скопирован в буфер обмена.");
+    //   }, function() {
+    //     alert("Не удалось скопировать заказ.");
+    //   });
+    //  }
 
+    // Функция для отправки заказа в телеграм
 
+    function sendTelegramOrder() {
+
+        var message = document.getElementById("order-summary").innerText;
+
+        $.ajax({
+          url: 'https://api.telegram.org/bot6080509418:AAHhbl16-A3A8M53ZgzUB-A3MgzyVH1Pr5w/sendMessage',
+          method: 'POST',
+          data: {
+            chat_id: '387802643',
+            text: message
+          },
+          success: function(response) {
+            $('#responseContainer').text('Заказ отправлен');
+          },
+          error: function(error) {
+            $('#responseContainer').text('Ошибка при отправке заказа');
+          }
+        });
+
+    };
 
 
 
