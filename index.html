@@ -42,9 +42,18 @@
   }
 
   .quantity-input button {
-    font-size: 24px;
+    width: 70px;
+    height: 70px;
+    font-size: 50px;
+    padding: 4px;
   }
 
+  .quantity-input input {
+    width: 100px;
+    height: 60px;
+    font-size: 40px;
+    padding: 4px;
+  }
   /* Стили для заказа и магазина */
   #coffee-shop,
   #order-button {
@@ -240,7 +249,6 @@
           quantityInput.value = item.quantity;
           quantityInput.min = "0";
           quantityInput.style.width = "40px";
-          quantityInput.style.height = "30px";
 
           var decreaseButton = document.createElement("button");
           decreaseButton.innerText = "-";
