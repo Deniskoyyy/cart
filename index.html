@@ -42,7 +42,7 @@
   }
 
   .quantity-input button {
-    font-size: 12px;
+    font-size: 24px;
   }
 
   /* Стили для заказа и магазина */
@@ -115,7 +115,7 @@
         items: [
           {
             name: "Молоко Кружева 3,2%",
-            description: "Молоко с жирностью 3,2% в упаковке 1 литр.",
+            description: "Заказывать кратно 12 л (12, 24, 36, 48, 60 и т.д.)",
             image: "milk.jpg",
             quantity: 5,
             unit: "л"
@@ -225,6 +225,7 @@
           var nameElement = document.createElement("div");
           nameElement.classList.add("product-name");
           nameElement.innerText = item.name;
+          nameElement.style.fontWeight = "bold";
           detailsElement.appendChild(nameElement);
 
           var descriptionElement = document.createElement("div");
@@ -239,6 +240,7 @@
           quantityInput.value = item.quantity;
           quantityInput.min = "0";
           quantityInput.style.width = "40px";
+          quantityInput.style.height = "30px";
 
           var decreaseButton = document.createElement("button");
           decreaseButton.innerText = "-";
@@ -267,9 +269,9 @@
           quantityElement.appendChild(quantityInputGroup);
           detailsElement.appendChild(quantityElement);
 
-          var unitElement = document.createElement("div");
-          unitElement.innerText = "Единица измерения: " + item.unit;
-          detailsElement.appendChild(unitElement);
+          // var unitElement = document.createElement("div");
+          // unitElement.innerText = "Единица измерения: " + item.unit;
+          // detailsElement.appendChild(unitElement);
 
           productElement.appendChild(detailsElement);
           categoryContent.appendChild(productElement);
