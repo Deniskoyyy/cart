@@ -67,8 +67,8 @@
     }
 
     .product img {
-      max-width: 100%;
-      height: auto;
+      max-width: 100px;
+      max-height: 100px;
       margin-bottom: 10px;
     }
 
@@ -126,14 +126,14 @@
         ]
       },
       {
-        category: "Мороженое",
+        category: "Мороженое без ЗМЖ",
         items: [
           {
-            name: "Мороженое без сметаны",
+            name: "Мороженое без ЗМЖ",
             description: "Вкусное мороженое без сметаны, 1 порция.",
             image: "ice-cream.jpg",
             quantity: 8,
-            unit: "порция"
+            unit: "ванночка"
           }
         ]
       },
@@ -305,7 +305,7 @@
         var summaryText = selectedCoffeeShop + "\n\n";
 
         selectedProducts.forEach(function(product) {
-          summaryText += product.name + " - " + product.quantity + " ед. (" + getProductUnit(product.name) + ")\n";
+          summaryText += product.name + " - " + product.quantity + " " + getProductUnit(product.name) + "\n";
         });
 
         orderSummary.innerText = summaryText;
