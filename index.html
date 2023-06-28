@@ -137,9 +137,10 @@
 <!--  <div id="order-result"></div>-->
 <!--  <button class="copy-order-button" onclick="copyOrderToClipboard()">Скопировать заказ</button>-->
 
-  <div id="telegram"></div>
+  <div id="telegramButtonContainer" style="display: none;">
   <!-- Кнопка для отправки заказа через Telegram -->
-  <button class="btn-telegram" onclick="sendTelegramOrder()" >Отправить через Telegram</button>
+  <button class="btn-telegram" id="telegramButton" onclick="sendTelegramOrder()">Отправить через Telegram</button>
+  </div>
 
   <div id="responseContainer"></div>
 
@@ -579,6 +580,11 @@
         });
 
         orderSummary.innerText = summaryText;
+
+        // Отображение кнопки Telegram после формирования заказа
+        var telegramButtonContainer = document.getElementById("telegramButtonContainer");
+        telegramButtonContainer.style.display = "block";
+
       }
     }
 
@@ -595,7 +601,17 @@
 
     // Функция для отправки заказа в телеграм
 
+
+    var confirmMessage = "Точно перепроверили заказ? Ничего лишнего, ничего не забыли?)\nОтправляем?";
+
     function sendTelegramOrder() {
+      // Запрос подтверждения выполнения запроса
+      var confirmed = confirm(confirmMessage);
+      if (confirmed) {
+
+        var telegramButton = document.getElementById("telegramButton");
+        telegramButton.disabled = true; // Делаем кнопку неактивной
+        telegramButton.innerText = "Отправка..."; // Меняем текст кнопки на "Отправка..."
 
         var message = document.getElementById("order-summary").innerText;
 
@@ -606,14 +622,14 @@
             chat_id: '387802643',
             text: message
           },
-          success: function(response) {
-            $('#responseContainer').text('Заказ отправлен');
+          success: function (response) {
+            telegramButton.innerText = "Отправлено"; // Меняем текст кнопки на "Отправлено" при успешной отправке
           },
-          error: function(error) {
-            $('#responseContainer').text('Ошибка при отправке заказа');
+          error: function (error) {
+            telegramButton.innerText = "Ошибка"; // Меняем текст кнопки на "Ошибка" при ошибке отправки
           }
         });
-
+      };
     };
 
 
