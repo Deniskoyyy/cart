@@ -487,7 +487,6 @@
 
           var decreaseButton = document.createElement("button");
           decreaseButton.innerText = "-";
-          decreaseButton.style.paddingLeft = "10px";
           decreaseButton.addEventListener("click", function() {
             var currentValue = parseInt(quantityInput.value);
             if (currentValue > 0) {
@@ -497,7 +496,6 @@
 
           var increaseButton = document.createElement("button");
           increaseButton.innerText = "+";
-          increaseButton.style.paddingLeft = "10px";
           increaseButton.addEventListener("click", function() {
             var currentValue = parseInt(quantityInput.value);
             quantityInput.value = currentValue + 1;
