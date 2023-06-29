@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
   <title>Онлайн заказы</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
@@ -66,6 +67,7 @@
     width: 200px; /* Ширина кнопки "Сформировать заказ" */
     height: 50px; /* Высота кнопки "Сформировать заказ" */
     font-size: 18px; /* Размер шрифта кнопки "Сформировать заказ" */
+    margin: 10px 0;
   }
 
   .copy-order-button {
@@ -78,12 +80,22 @@
     width: 200px;
     height: 50px;
     font-size: 18px;
+    margin: 10px 0;
   }
 
-
-
+    /* Стили для рамки с результатом заказа */
   #order-summary {
+    display: none; /* Скрыть рамку по умолчанию */
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     white-space: pre-wrap;
+  }
+
+  .form-group label[for="coffee-shop"] {
+    font-weight: bold; /* Делаем шрифт жирным */
   }
 
   /* Медиа-запрос для мобильных устройств */
@@ -115,6 +127,10 @@
 <body>
   <h1>Заказы Coffee Like</h1>
 
+  <div id="products">
+    <!-- Здесь будут отображаться товары -->
+  </div>
+
   <div class="form-group">
     <label for="coffee-shop">Для какой кофейни делаем заказ:</label>
     <select id="coffee-shop" required>
@@ -124,14 +140,7 @@
     </select>
   </div>
 
-
-
-  <div id="products">
-    <!-- Здесь будут отображаться товары -->
-  </div>
-
   <div id="order-summary"></div>
-
   <button class="order-button" onclick="makeOrder()">Сформировать заказ</button>
 
 <!--  <div id="order-result"></div>-->
@@ -141,8 +150,6 @@
   <!-- Кнопка для отправки заказа через Telegram -->
   <button class="btn-telegram" id="telegramButton" onclick="sendTelegramOrder()">Отправить через Telegram</button>
   </div>
-
-  <div id="responseContainer"></div>
 
 
 
@@ -205,7 +212,7 @@
           detailsElement.appendChild(descriptionElement);
 
           var quantityElement = document.createElement("div");
-          quantityElement.innerText = "Количество: ";
+          quantityElement.innerText = "Количество (" + item.unit + "):";
 
           var quantityInput = document.createElement("input");
           quantityInput.type = "number";
@@ -236,10 +243,6 @@
 
           quantityElement.appendChild(quantityInputGroup);
           detailsElement.appendChild(quantityElement);
-
-          // var unitElement = document.createElement("div");
-          // unitElement.innerText = "Единица измерения: " + item.unit;
-          // detailsElement.appendChild(unitElement);
 
           productElement.appendChild(detailsElement);
           categoryContent.appendChild(productElement);
@@ -278,6 +281,8 @@
         }
       });
 
+      orderSummary.style.display = "block";
+
       if (selectedProducts.length === 0) {
         orderSummary.innerText = "Ваш заказ пуст.";
       } else {
@@ -288,6 +293,7 @@
         });
 
         orderSummary.innerText = summaryText;
+
 
         // Отображение кнопки Telegram после формирования заказа
         var telegramButtonContainer = document.getElementById("telegramButtonContainer");
@@ -328,7 +334,8 @@
           url: 'https://api.telegram.org/bot6080509418:AAHhbl16-A3A8M53ZgzUB-A3MgzyVH1Pr5w/sendMessage',
           method: 'POST',
           data: {
-            chat_id: '-947565478',
+            chat_id: '-1001723684058',
+            message_thread_id: '2',
             text: message,
             parse_mode: 'Markdown'
           },
