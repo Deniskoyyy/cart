@@ -1,0 +1,341 @@
+{
+  "products": [
+    {
+      "category": "Вода и молоко",
+      "items": [
+        {
+          "name": "Молоко Кружева 3,2%",
+          "description": "Заказывать кратно 12 л (48, 60, 72 и т.д.)",
+          "image": "pictures/milk.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Сливки Эконива 10%",
+          "description": "Заказывать кратно 12 л (12, 24 и т.д.)",
+          "image": "pictures/cream.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Вода святой источник 0,5л негаз",
+          "description": "Заказывать кратно 12 шт (12, 24 и т.д.)",
+          "image": "pictures/saint05still.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Вода святой источник 0,5л газ",
+          "description": "Заказывать кратно 12 шт (12, 24 и т.д.)",
+          "image": "pictures/saint05sparkling.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Вода святой источник 1,5л газ",
+          "description": "Заказывать кратно 6 шт (6, 12 и т.д.)",
+          "image": "pictures/saint15sparkling.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Вода в бутылях 19л",
+          "description": "",
+          "image": "pictures/water19.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сок Рич апельсиновый",
+          "description": "",
+          "image": "pictures/orange.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Тоник Evervess",
+          "description": "",
+          "image": "pictures/tonic.jpg",
+          "quantity": 0,
+          "unit": "л"
+        }
+      ]
+    },
+
+    {
+      "category": "Альтернативное молоко",
+      "items": [
+        {
+          "name": "Альпро Кокос",
+          "description": "",
+          "image": "pictures/coconut-milk.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Альпро Банан",
+          "description": "",
+          "image": "pictures/banana-milk.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Альпро Миндаль",
+          "description": "",
+          "image": "pictures/almond-milk.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Альпро Фундук",
+          "description": "",
+          "image": "pictures/hazelnut-milk.jpg",
+          "quantity": 0,
+          "unit": "л"
+        }
+      ]
+    },
+
+    {
+      "category": "Хоз товары",
+      "items": [
+        {
+          "name": "Салфетки бумажные",
+          "description": "Упаковки по 500 шт.",
+          "image": "pictures/napkins.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Спанлейс рулон",
+          "description": "Рулонные полотенца",
+          "image": "pictures/spunlace.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Пакеты для мусора 120л",
+          "description": "",
+          "image": "pictures/bags120.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пакеты для мусора 160л",
+          "description": "Заказываем кратно 50шт",
+          "image": "pictures/bags160.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Вилки",
+          "description": "",
+          "image": "pictures/forks.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Палочки деревянные без упаковки",
+          "description": "",
+          "image": "pictures/stirrers.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Палочки деревянные в упаковке",
+          "description": "",
+          "image": "pictures/stirrerspacked.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Трубочки для напитков в упаковке",
+          "description": "",
+          "image": "pictures/strawspacked.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Трубочки для напитков без упаковки",
+          "description": "",
+          "image": "pictures/straws.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пакетики для льда",
+          "description": "",
+          "image": "pictures/icebags.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Тарелки одноразовые бумажные",
+          "description": "",
+          "image": "pictures/plates.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Одноразовые полиэтиленовые перчатки",
+          "description": "",
+          "image": "pictures/gloves.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Губки для посуды",
+          "description": "",
+          "image": "pictures/sponges.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Средство для мытья посуды Велли",
+          "description": "",
+          "image": "pictures/velly.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        }
+
+      ]
+    },
+
+    {
+      "category": "Добавки",
+      "items": [
+        {
+          "name": "Взбитые сливки Бьянка",
+          "description": "",
+          "image": "pictures/whipped_cream.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Маршмеллоу мини цветные",
+          "description": "",
+          "image": "pictures/marshmallows.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Сахар в стиках",
+          "description": "Можно заказывать по 1 кг, но лучше сразу 10 кг",
+          "image": "pictures/sugar.jpg",
+          "quantity": 0,
+          "unit": "кг"
+        },
+        {
+          "name": "Корица",
+          "description": "Фасовка по 1 кг",
+          "image": "pictures/cinnamon.jpg",
+          "quantity": 0,
+          "unit": "кг"
+        }
+
+      ]
+    },
+    {
+      "category": "Сиропы",
+      "items": [
+        {
+          "name": "Сироп Herbarista карамель",
+          "description": "",
+          "image": "pictures/caramel.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista солёная карамель",
+          "description": "",
+          "image": "pictures/salted.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista кокос",
+          "description": "",
+          "image": "pictures/coconut.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista банан",
+          "description": "",
+          "image": "pictures/banana.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista ваниль",
+          "description": "",
+          "image": "pictures/vanilla.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista шоколад",
+          "description": "",
+          "image": "pictures/choco.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista Ирландский крем",
+          "description": "",
+          "image": "pictures/irish.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista миндаль",
+          "description": "",
+          "image": "pictures/almond.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista клубника",
+          "description": "",
+          "image": "pictures/strawberry.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista лесной орех",
+          "description": "",
+          "image": "pictures/nutcracker.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista мята",
+          "description": "",
+          "image": "pictures/mint.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        }
+      ]
+    },
+
+    {
+      "category": "Прочее",
+      "items": [
+        {
+          "name": "Трубочки вафельные со сгущёнкой",
+          "description": "",
+          "image": "pictures/waffle.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Мороженое без ЗМЖ",
+          "description": "",
+          "image": "pictures/ice-cream.jpg",
+          "quantity": 0,
+          "unit": "ванночка"
+        }
+      ]
+    }
+  ]
+}
