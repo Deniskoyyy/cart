@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Онлайн заказы</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="config.js"></script>
   <style>
   /* Стили для контейнера */
   #container {
@@ -98,6 +99,10 @@
     font-weight: bold; /* Делаем шрифт жирным */
   }
 
+  /*body {*/
+  /*  background-image: url("bg/bg.avif");*/
+  /*}*/
+
   /* Медиа-запрос для мобильных устройств */
   @media (max-width: 480px) {
     #container {
@@ -125,6 +130,7 @@
 </head>
 <div id="container">
 <body>
+
   <h1>Заказы Coffee Like</h1>
 
   <div id="products">
@@ -331,10 +337,10 @@
         message = "```\n" + message + "\n```"
 
         $.ajax({
-          url: 'https://api.telegram.org/bot6080509418:AAHhbl16-A3A8M53ZgzUB-A3MgzyVH1Pr5w/sendMessage',
+          url: telegramUrl,
           method: 'POST',
           data: {
-            chat_id: '-1001723684058',
+            chat_id: chatId,
             message_thread_id: '2',
             text: message,
             parse_mode: 'Markdown'
