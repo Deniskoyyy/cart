@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Онлайн заказы</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+  /* Стили для контейнера */
+  #container {
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* Стили для категорий */
+  .category {
+    margin-bottom: 20px;
+  }
+
+  /* Стили для товаров */
+  .product {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  /* Стили для изображений товаров */
+  .product img {
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+
+  /* Стили для деталей товаров */
+  .product-details {
+    flex-grow: 1;
+    padding-left: 10px;
+  }
+
+  /* Стили для полей ввода количества */
+  .quantity-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .quantity-input button {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+  }
+
+  .quantity-input input {
+    width: 60px;
+    height: 24px;
+    font-size: 24px;
+  }
+  /* Стили для заказа и магазина */
+  #coffee-shop,
+  #order-button {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 10px;
+  }
+
+    /* Стили для кнопок */
+  .order-button {
+    width: 200px; /* Ширина кнопки "Сформировать заказ" */
+    height: 50px; /* Высота кнопки "Сформировать заказ" */
+    font-size: 18px; /* Размер шрифта кнопки "Сформировать заказ" */
+    margin: 10px 0;
+  }
+
+  .copy-order-button {
+    width: 200px; /* Ширина кнопки "Скопировать заказ" */
+    height: 50px; /* Высота кнопки "Скопировать заказ" */
+    font-size: 18px; /* Размер шрифта кнопки "Скопировать заказ" */
+  }
+
+  .btn-telegram {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+    /* Стили для рамки с результатом заказа */
+  #order-summary {
+    display: none; /* Скрыть рамку по умолчанию */
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+  }
+
+  .form-group label[for="coffee-shop"] {
+    font-weight: bold; /* Делаем шрифт жирным */
+  }
+
+  /* Медиа-запрос для мобильных устройств */
+  @media (max-width: 480px) {
+    #container {
+      padding: 5px;
+    }
+
+    .product {
+      flex-direction: column;
+    }
+
+    .product img {
+      width: auto;
+      height: auto;
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+
+    .product-details {
+      padding-left: 0;
+    }
+  }
+</style>
+
+</head>
+<div id="container">
+<body>
+  <h1>Заказы Coffee Like</h1>
+
+  <div id="products">
+    <!-- Здесь будут отображаться товары -->
+  </div>
+
+  <div class="form-group">
+    <label for="coffee-shop">Для какой кофейни делаем заказ:</label>
+    <select id="coffee-shop" required>
+      <option value="" disabled selected>Выберите кофейню</option>
+      <option value="В Охта Молл на подземную зону разгрузки:">Охта Молл, 3 этаж</option>
+      <option value="В фудтрак со стороны ул. Магнитогорской:">Фудтрак</option>
+    </select>
+  </div>
+
+  <div id="order-summary"></div>
+  <button class="order-button" onclick="makeOrder()">Сформировать заказ</button>
+
+<!--  <div id="order-result"></div>-->
+<!--  <button class="copy-order-button" onclick="copyOrderToClipboard()">Скопировать заказ</button>-->
+
+  <div id="telegramButtonContainer" style="display: none;">
+  <!-- Кнопка для отправки заказа через Telegram -->
+  <button class="btn-telegram" id="telegramButton" onclick="sendTelegramOrder()">Отправить через Telegram</button>
+  </div>
+
+
+
+  <script>
+
+    // Функция для загрузки информации о товарах из файла products.json
+    function loadProducts() {
+      $.ajax({
+        url: 'products.json',
+        dataType: 'json',
+        success: function(data) {
+          productsData = data.products;
+          displayProducts();
+        },
+        error: function() {
+          alert('Ошибка при загрузке данных о товарах.');
+        }
+      });
+    }
+
+    // Вызов функции для загрузки информации о товарах при загрузке страницы
+    loadProducts();
+
+
+    // Функция для отображения товаров
+    function displayProducts() {
+      var productsContainer = document.getElementById("products");
+
+      productsData.forEach(function(category) {
+        var categoryElement = document.createElement("div");
+        categoryElement.classList.add("category");
+
+        var categoryTitle = document.createElement("h2");
+        categoryTitle.classList.add("category-title");
+        categoryTitle.innerText = category.category;
+        categoryElement.appendChild(categoryTitle);
+
+        var categoryContent = document.createElement("div");
+        categoryContent.classList.add("category-content");
+
+        category.items.forEach(function(item) {
+          var productElement = document.createElement("div");
+          productElement.classList.add("product");
+
+          var imageElement = document.createElement("img");
+          imageElement.src = item.image;
+          productElement.appendChild(imageElement);
+
+          var detailsElement = document.createElement("div");
+          detailsElement.classList.add("product-details");
+
+          var nameElement = document.createElement("div");
+          nameElement.classList.add("product-name");
+          nameElement.innerText = item.name;
+          nameElement.style.fontWeight = "bold";
+          detailsElement.appendChild(nameElement);
+
+          var descriptionElement = document.createElement("div");
+          descriptionElement.innerText = item.description;
+          detailsElement.appendChild(descriptionElement);
+
+          var quantityElement = document.createElement("div");
+          quantityElement.innerText = "Количество (" + item.unit + "):";
+
+          var quantityInput = document.createElement("input");
+          quantityInput.type = "number";
+          quantityInput.value = item.quantity;
+          quantityInput.min = "0";
+
+          var decreaseButton = document.createElement("button");
+          decreaseButton.innerText = "-";
+          decreaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 0) {
+              quantityInput.value = currentValue - 1;
+            }
+          });
+
+          var increaseButton = document.createElement("button");
+          increaseButton.innerText = "+";
+          increaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+          });
+
+          var quantityInputGroup = document.createElement("div");
+          quantityInputGroup.classList.add("quantity-input");
+          quantityInputGroup.appendChild(decreaseButton);
+          quantityInputGroup.appendChild(quantityInput);
+          quantityInputGroup.appendChild(increaseButton);
+
+          quantityElement.appendChild(quantityInputGroup);
+          detailsElement.appendChild(quantityElement);
+
+          productElement.appendChild(detailsElement);
+          categoryContent.appendChild(productElement);
+        });
+
+        categoryElement.appendChild(categoryContent);
+        productsContainer.appendChild(categoryElement);
+      });
+    }
+
+    // Функция для создания заказа
+    function makeOrder() {
+      var coffeeShopSelect = document.getElementById("coffee-shop");
+      var selectedCoffeeShop = coffeeShopSelect.value;
+
+      if (selectedCoffeeShop === "") {
+        alert("Пожалуйста, выберите кофейню.");
+        return;
+      }
+
+      var orderSummary = document.getElementById("order-summary");
+      orderSummary.innerHTML = ""; // Очистка предыдущего заказа
+
+      var selectedProducts = [];
+      var productElements = document.getElementsByClassName("product");
+
+      Array.from(productElements).forEach(function(productElement) {
+        var nameElement = productElement.getElementsByClassName("product-name")[0];
+        var quantityInput = productElement.getElementsByTagName("input")[0];
+
+        var productName = nameElement.innerText;
+        var quantity = parseInt(quantityInput.value);
+
+        if (quantity > 0) {
+          selectedProducts.push({ name: productName, quantity: quantity });
+        }
+      });
+
+      orderSummary.style.display = "block";
+
+      if (selectedProducts.length === 0) {
+        orderSummary.innerText = "Ваш заказ пуст.";
+      } else {
+        var summaryText = selectedCoffeeShop + "\n\n";
+
+        selectedProducts.forEach(function(product) {
+          summaryText += product.name + " - " + product.quantity + " " + getProductUnit(product.name) + "\n";
+        });
+
+        orderSummary.innerText = summaryText;
+
+
+        // Отображение кнопки Telegram после формирования заказа
+        var telegramButtonContainer = document.getElementById("telegramButtonContainer");
+        telegramButtonContainer.style.display = "block";
+
+      }
+    }
+
+    // Функция для копирования заказа
+
+    // function copyOrderToClipboard() {
+    // var orderSummary = document.getElementById("order-summary").innerText;
+    //   navigator.clipboard.writeText(orderSummary).then(function() {
+    //     alert("Заказ скопирован в буфер обмена.");
+    //   }, function() {
+    //     alert("Не удалось скопировать заказ.");
+    //   });
+    //  }
+
+    // Функция для отправки заказа в телеграм
+
+
+    var confirmMessage = "Точно перепроверили заказ?\nНичего лишнего, ничего не забыли?)\n\nОтправляем?";
+
+    function sendTelegramOrder() {
+      // Запрос подтверждения выполнения запроса
+      var confirmed = confirm(confirmMessage);
+      if (confirmed) {
+
+        var telegramButton = document.getElementById("telegramButton");
+        telegramButton.disabled = true; // Делаем кнопку неактивной
+        telegramButton.innerText = "Отправка..."; // Меняем текст кнопки на "Отправка..."
+
+        var message = document.getElementById("order-summary").innerText;
+        message = "```\n" + message + "\n```"
+
+        $.ajax({
+          url: 'https://api.telegram.org/bot6080509418:AAHhbl16-A3A8M53ZgzUB-A3MgzyVH1Pr5w/sendMessage',
+          method: 'POST',
+          data: {
+            chat_id: '-1001723684058',
+            message_thread_id: '2',
+            text: message,
+            parse_mode: 'Markdown'
+          },
+          success: function (response) {
+            telegramButton.innerText = "Отправлено"; // Меняем текст кнопки на "Отправлено" при успешной отправке
+          },
+          error: function (error) {
+            telegramButton.innerText = "Ошибка"; // Меняем текст кнопки на "Ошибка" при ошибке отправки
+          }
+        });
+      };
+    };
+
+
+
+
+    // Вспомогательная функция для получения единицы измерения товара
+    function getProductUnit(productName) {
+      var unit = "";
+
+      productsData.forEach(function(category) {
+        category.items.forEach(function(item) {
+          if (item.name === productName) {
+            unit = item.unit;
+          }
+        });
+      });
+
+      return unit;
+    }
+
+    // Вызов функции для отображения товаров при загрузке страницы
+    displayProducts();
+  </script>
+</body>
+</div>
+</html>
