@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Онлайн заказы</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="config.js"></script>
+
   <style>
   /* Стили для контейнера */
   #container {
@@ -335,12 +335,13 @@
 
         var message = document.getElementById("order-summary").innerText;
         message = "```\n" + message + "\n```"
-
+        var MychatId = '<?php echo getenv("CHATID"); ?>';
+        var MytelegramUrl = '<?php echo getenv("TELEGRAMURL"); ?>';
         $.ajax({
-          url: telegramUrl,
+          url: MytelegramUrl,
           method: 'POST',
           data: {
-            chat_id: chatId,
+            chat_id: MychatId,
             message_thread_id: '2',
             text: message,
             parse_mode: 'Markdown'
