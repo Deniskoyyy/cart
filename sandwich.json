@@ -1,0 +1,53 @@
+{
+  "products": [
+    {
+      "category": "Сэндвичи",
+      "items": [
+        {
+          "name": "Сэндвич с лососем",
+          "description": "",
+          "image": "sandwich/sandwich_salmon.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сэндвич с ветчиной и сыром",
+          "description": "",
+          "image": "sandwich/sandwich_ham_cheese.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сэндвич с курицей",
+          "description": "",
+          "image": "sandwich/sandwich_chicken.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сэндвич с индейкой",
+          "description": "",
+          "image": "sandwich/sandwich_turkey.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Бейгл с курицей",
+          "description": "",
+          "image": "sandwich/bagel_chicken.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Блинчики с ветчиной и сыром",
+          "description": "",
+          "image": "sandwich/pancakes_ham_cheese.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        }
+
+      ]
+    }
+
+  ]
+}
