@@ -65,6 +65,7 @@
 
     /* Стили для кнопок */
   .order-button {
+    display: none;
     width: 200px; /* Ширина кнопки "Сформировать заказ" */
     height: 50px; /* Высота кнопки "Сформировать заказ" */
     font-size: 18px; /* Размер шрифта кнопки "Сформировать заказ" */
@@ -78,6 +79,7 @@
   }
 
   .btn-telegram {
+    display: none;
     width: 200px;
     height: 50px;
     font-size: 18px;
@@ -97,6 +99,35 @@
 
   .form-group label[for="coffee-shop"] {
     font-weight: bold; /* Делаем шрифт жирным */
+  }
+
+  /* Стили для элементов "вверх" и "вниз" */
+  .scroll-to-top {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    display: none; /* Начально скрываем элемент */
+  }
+
+  .scroll-to-bottom {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .category-button {
+    font-size: 18px;
+    width: 120px;
+    height: 50px;
+  }
+
+  .catContainer {
+    display: flex;
+    justify-content: space-between;
   }
 
   /*body {*/
@@ -131,13 +162,19 @@
 <div id="container">
 <body>
 
-  <h1>Заказы Coffee Like</h1>
+  <h1 style="text-align: center;">Заказы Coffee Like</h1>
+
+  <div class="catContainer">
+  <button class="category-button" onclick="loadProductsFromJson('milk.json')">Вода и молоко</button>
+  <button class="category-button" onclick="loadProductsFromJson('dessert.json')">Десерты</button>
+  <button class="category-button" onclick="loadProductsFromJson('sandwich.json')">Сэндвичи</button>
+  </div>
 
   <div id="products">
     <!-- Здесь будут отображаться товары -->
   </div>
 
-  <div class="form-group">
+  <div id="coffeeShopFormGroup" class="form-group">
     <label for="coffee-shop">Для какой кофейни делаем заказ:</label>
     <select id="coffee-shop" required>
       <option value="" disabled selected>Выберите кофейню</option>
@@ -146,25 +183,63 @@
     </select>
   </div>
 
-  <div id="order-summary"></div>
-  <button class="order-button" onclick="makeOrder()">Сформировать заказ</button>
+  <div id="order-summary" ></div>
+  <button class="order-button" id="orderButton" onclick="makeOrder()">Сформировать заказ</button>
 
 <!--  <div id="order-result"></div>-->
 <!--  <button class="copy-order-button" onclick="copyOrderToClipboard()">Скопировать заказ</button>-->
 
-  <div id="telegramButtonContainer" style="display: none;">
+  <div id="telegramButtonContainer">
   <!-- Кнопка для отправки заказа через Telegram -->
   <button class="btn-telegram" id="telegramButton" onclick="sendTelegramOrder()">Отправить через Telegram</button>
   </div>
 
-
+  <div id="scroll-to-top" class="scroll-to-top">⬆️</div>
+  <div id="scroll-to-bottom" class="scroll-to-bottom">⬇️</div>
 
   <script>
 
+    var currentTab = "";
+    var confirmMessage = "Точно перепроверили заказ?\nНичего лишнего, ничего не забыли?)\n\nОтправляем?";
+
+    loadProductsFromJson('milk.json')
+
+    window.onscroll = function() {
+      var scrollToTop = document.getElementById("scroll-to-top");
+      var scrollToBottom = document.getElementById("scroll-to-bottom");
+
+      if (document.documentElement.scrollTop > 0) {
+        scrollToTop.style.display = "block";
+      } else {
+        scrollToTop.style.display = "none";
+      }
+
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        scrollToBottom.style.display = "none";
+      } else {
+        scrollToBottom.style.display = "block";
+      }
+    }
+
+    // Обработчики клика по элементам "вверх" и "вниз"
+    document.getElementById("scroll-to-top").addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    })
+
+    document.getElementById("scroll-to-bottom").addEventListener("click", function() {
+      window.scrollTo({
+        top: document.body.offsetHeight,
+        behavior: "smooth"
+      });
+    })
+
     // Функция для загрузки информации о товарах из файла products.json
-    function loadProducts() {
+    function loadProductsFromJson(jsonFile) {
       $.ajax({
-        url: 'products.json',
+        url: jsonFile,
         dataType: 'json',
         success: function(data) {
           productsData = data.products;
@@ -174,15 +249,27 @@
           alert('Ошибка при загрузке данных о товарах.');
         }
       });
-    }
 
-    // Вызов функции для загрузки информации о товарах при загрузке страницы
-    loadProducts();
+      currentTab = jsonFile;
+
+      telegramButton.disabled = false;
+      telegramButton.innerText = "Отправить через Telegram";
+      telegramButton.style.display = "none";
+      orderButton.style.display = "block";
+      var orderSummary = document.getElementById("order-summary");
+      orderSummary.style.display = "none";
+      if (currentTab === 'milk.json') {
+        coffeeShopFormGroup.style.display = "block"
+      } else {
+        coffeeShopFormGroup.style.display = "none"
+      }
+    }
 
 
     // Функция для отображения товаров
     function displayProducts() {
       var productsContainer = document.getElementById("products");
+      productsContainer.innerHTML = ""; // Очистка контейнера перед отображением новых данных
 
       productsData.forEach(function(category) {
         var categoryElement = document.createElement("div");
@@ -191,6 +278,7 @@
         var categoryTitle = document.createElement("h2");
         categoryTitle.classList.add("category-title");
         categoryTitle.innerText = category.category;
+        categoryTitle.style.textAlign = "center";
         categoryElement.appendChild(categoryTitle);
 
         var categoryContent = document.createElement("div");
@@ -250,6 +338,43 @@
           quantityElement.appendChild(quantityInputGroup);
           detailsElement.appendChild(quantityElement);
 
+          // Добавление поля выбора количества товара на возврат
+          if (currentTab === 'sandwich.json') {
+            var returnQuantityElement = document.createElement("div");
+            returnQuantityElement.innerText = "Количество на возврат (" + item.unit + "):";
+
+            var returnQuantityInput = document.createElement("input");
+            returnQuantityInput.type = "number";
+            returnQuantityInput.value = item.returnQuantity || 0; // Изменено здесь
+            returnQuantityInput.min = "0";
+
+            var decreaseReturnButton = document.createElement("button");
+            decreaseReturnButton.innerText = "-";
+            decreaseReturnButton.addEventListener("click", function () {
+              var currentValue = parseInt(returnQuantityInput.value);
+              if (currentValue > 0) {
+                returnQuantityInput.value = currentValue - 1;
+              }
+            });
+
+            var increaseReturnButton = document.createElement("button");
+            increaseReturnButton.innerText = "+";
+            increaseReturnButton.addEventListener("click", function () {
+              var currentValue = parseInt(returnQuantityInput.value);
+              returnQuantityInput.value = currentValue + 1;
+            });
+
+            var returnQuantityInputGroup = document.createElement("div");
+            returnQuantityInputGroup.classList.add("quantity-input");
+            returnQuantityInputGroup.appendChild(decreaseReturnButton);
+            returnQuantityInputGroup.appendChild(returnQuantityInput);
+            returnQuantityInputGroup.appendChild(increaseReturnButton);
+
+            returnQuantityElement.appendChild(returnQuantityInputGroup);
+            detailsElement.appendChild(returnQuantityElement);
+
+          }
+
           productElement.appendChild(detailsElement);
           categoryContent.appendChild(productElement);
         });
@@ -261,21 +386,32 @@
 
     // Функция для создания заказа
     function makeOrder() {
+
       var coffeeShopSelect = document.getElementById("coffee-shop");
       var selectedCoffeeShop = coffeeShopSelect.value;
 
-      if (selectedCoffeeShop === "") {
-        alert("Пожалуйста, выберите кофейню.");
-        return;
+      if (currentTab === 'milk.json') {
+        if (selectedCoffeeShop === "") {
+          alert("Пожалуйста, выберите кофейню.");
+          return;
+        }
+        selectedCoffeeShop += "\n\n";
+      } else if (currentTab === 'dessert.json') {
+        selectedCoffeeShop = "Десерты:\n\n"
+      } else if (currentTab === 'sandwich.json') {
+        selectedCoffeeShop = "Сэндвичи:\n\n"
       }
 
       var orderSummary = document.getElementById("order-summary");
       orderSummary.innerHTML = ""; // Очистка предыдущего заказа
 
       var selectedProducts = [];
+      if (currentTab === 'sandwich.json') {
+        var returnProducts = [];
+      }
       var productElements = document.getElementsByClassName("product");
 
-      Array.from(productElements).forEach(function(productElement) {
+      Array.from(productElements).forEach(function (productElement) {
         var nameElement = productElement.getElementsByClassName("product-name")[0];
         var quantityInput = productElement.getElementsByTagName("input")[0];
 
@@ -285,6 +421,15 @@
         if (quantity > 0) {
           selectedProducts.push({ name: productName, quantity: quantity });
         }
+
+        if (currentTab === 'sandwich.json') {
+          var returnQuantityInput = productElement.getElementsByTagName("input")[1];
+          var returnQuantity = parseInt(returnQuantityInput.value);
+          if (returnQuantity > 0) {
+          returnProducts.push({ name: productName, returnQuantity: returnQuantity });
+          }
+
+        }
       });
 
       orderSummary.style.display = "block";
@@ -292,21 +437,28 @@
       if (selectedProducts.length === 0) {
         orderSummary.innerText = "Ваш заказ пуст.";
       } else {
-        var summaryText = selectedCoffeeShop + "\n\n";
+        var summaryText = selectedCoffeeShop;
 
-        selectedProducts.forEach(function(product) {
+        selectedProducts.forEach(function (product) {
           summaryText += product.name + " - " + product.quantity + " " + getProductUnit(product.name) + "\n";
         });
 
+        if (currentTab === 'sandwich.json') {
+          if (returnProducts.length > 0) {
+            summaryText += "\nТовары на возврат:\n\n";
+            returnProducts.forEach(function (returnProduct) {
+              summaryText += returnProduct.name + " - " + returnProduct.returnQuantity + " " + getProductUnit(returnProduct.name) + "\n";
+            });
+          }
+        }
+
         orderSummary.innerText = summaryText;
 
-
         // Отображение кнопки Telegram после формирования заказа
-        var telegramButtonContainer = document.getElementById("telegramButtonContainer");
-        telegramButtonContainer.style.display = "block";
-
+        telegramButton.style.display = "block";
       }
     }
+
 
     // Функция для копирования заказа
 
@@ -320,9 +472,6 @@
     //  }
 
     // Функция для отправки заказа в телеграм
-
-
-    var confirmMessage = "Точно перепроверили заказ?\nНичего лишнего, ничего не забыли?)\n\nОтправляем?";
 
     function sendTelegramOrder() {
       // Запрос подтверждения выполнения запроса
@@ -353,9 +502,7 @@
           }
         });
       };
-    };
-
-
+    }
 
 
     // Вспомогательная функция для получения единицы измерения товара
@@ -373,8 +520,6 @@
       return unit;
     }
 
-    // Вызов функции для отображения товаров при загрузке страницы
-    displayProducts();
   </script>
 </body>
 </div>
