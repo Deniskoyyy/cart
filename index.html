@@ -445,7 +445,7 @@
 
         if (currentTab === 'sandwich.json') {
           if (returnProducts.length > 0) {
-            summaryText += "\nТовары на возврат:\n\n";
+            summaryText += "\n\nТовары на возврат:\n\n";
             returnProducts.forEach(function (returnProduct) {
               summaryText += returnProduct.name + " - " + returnProduct.returnQuantity + " " + getProductUnit(returnProduct.name) + "\n";
             });
