@@ -341,6 +341,13 @@
           "image": "milk/ice-cream.jpg",
           "quantity": 0,
           "unit": "ванночка"
+        },
+        {
+          "name": "Печенье с предсказанием в зелёной упаковке",
+          "description": "Обычно заказываем по 100шт",
+          "image": "milk/fortune.jpg",
+          "quantity": 0,
+          "unit": "шт"
         }
       ]
     }
