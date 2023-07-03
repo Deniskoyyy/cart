@@ -314,6 +314,13 @@
           "image": "milk/mint.jpg",
           "quantity": 0,
           "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista малина",
+          "description": "",
+          "image": "milk/raspberries.jpg",
+          "quantity": 0,
+          "unit": "шт"
         }
       ]
     },
