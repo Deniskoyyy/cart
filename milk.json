@@ -206,14 +206,14 @@
         },
         {
           "name": "Держатель для 2-х стаканов",
-          "description": "упаковки по 150шт",
+          "description": "Упаковки по 150шт",
           "image": "milk/holder2.jpg",
           "quantity": 0,
           "unit": "упак"
         },
         {
           "name": "Держатель для 4-х стаканов",
-          "description": "упаковки по 130шт",
+          "description": "Упаковки по 130шт",
           "image": "milk/holder4.jpg",
           "quantity": 0,
           "unit": "упак"
