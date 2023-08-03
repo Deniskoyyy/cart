@@ -44,6 +44,13 @@
           "image": "sandwich/pancakes_ham_cheese.jpg",
           "quantity": 0,
           "unit": "шт"
+        },
+        {
+          "name": "Круассан с ветчиной и сыром",
+          "description": "",
+          "image": "sandwich/croissant.jpg",
+          "quantity": 0,
+          "unit": "шт"
         }
 
       ]
