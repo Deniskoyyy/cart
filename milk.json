@@ -135,21 +135,21 @@
           "unit": "упак"
         },
         {
-          "name": "Палочки деревянные без упаковки",
+          "name": Размешиватели деревянные без упаковки",
           "description": "",
           "image": "milk/stirrers.jpg",
           "quantity": 0,
           "unit": "упак"
         },
         {
-          "name": "Палочки деревянные в упаковке",
+          "name": Размешиватели деревянные в индивидуальной упаковке",
           "description": "",
           "image": "milk/stirrerspacked.jpg",
           "quantity": 0,
           "unit": "упак"
         },
         {
-          "name": "Трубочки для напитков в упаковке",
+          "name": "Трубочки для напитков в индивидуальной упаковке",
           "description": "",
           "image": "milk/strawspacked.jpg",
           "quantity": 0,
