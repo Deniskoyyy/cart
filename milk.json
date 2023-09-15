@@ -46,9 +46,23 @@
           "unit": "шт"
         },
         {
-          "name": "Сок Рич апельсиновый",
+          "name": "Сок Добрый апельсиновый",
           "description": "",
-          "image": "milk/orange.jpg",
+          "image": "milk/d_orange.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Сок Добрый яблочный",
+          "description": "",
+          "image": "milk/d_apple.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
+          "name": "Сок Добрый вишнёвый",
+          "description": "",
+          "image": "milk/d_cherry.jpg",
           "quantity": 0,
           "unit": "л"
         },
@@ -217,6 +231,13 @@
           "image": "milk/holder4.jpg",
           "quantity": 0,
           "unit": "упак"
+        },
+        {
+          "name": "Контейнеры пластиковые 34АР",
+          "description": "Упаковки по 185шт",
+          "image": "milk/container.jpg",
+          "quantity": 0,
+          "unit": "упак"
         }
 
       ]
@@ -226,9 +247,9 @@
       "category": "Добавки",
       "items": [
         {
-          "name": "Взбитые сливки Бьянка",
+          "name": "Взбитые сливки Улала",
           "description": "",
-          "image": "milk/whipped_cream.jpg",
+          "image": "milk/hulala.jpg",
           "quantity": 0,
           "unit": "шт"
         },
