@@ -25,13 +25,6 @@
           "unit": "шт"
         },
         {
-          "name": "Сэндвич с индейкой",
-          "description": "",
-          "image": "sandwich/sandwich_turkey.jpg",
-          "quantity": 0,
-          "unit": "шт"
-        },
-        {
           "name": "Бейгл с курицей",
           "description": "",
           "image": "sandwich/bagel_chicken.jpg",
