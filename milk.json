@@ -11,9 +11,9 @@
           "unit": "л"
         },
         {
-          "name": "Сливки Эконива 10%",
+          "name": "Сливки Свежее Завтра 10%",
           "description": "Заказывать кратно 12 л (12, 24 и т.д.)",
-          "image": "milk/cream.jpg",
+          "image": "milk/sz_cream.jpg",
           "quantity": 0,
           "unit": "л"
         },
@@ -60,9 +60,9 @@
           "unit": "л"
         },
         {
-          "name": "Сок Добрый вишнёвый",
+          "name": "Сок Сады Придонья вишнёвый",
           "description": "",
-          "image": "milk/d_cherry.jpg",
+          "image": "milk/sp_cherry.jpg",
           "quantity": 0,
           "unit": "л"
         },
@@ -220,7 +220,7 @@
         },
         {
           "name": "Держатель для 2-х стаканов",
-          "description": "Упаковки по 150шт",
+          "description": "Упаковки по 100шт",
           "image": "milk/holder2.jpg",
           "quantity": 0,
           "unit": "упак"
@@ -392,7 +392,7 @@
           "unit": "шт"
         },
         {
-          "name": "Чай матча зеленый китайский",
+          "name": "Чай матча зеленый японский кат. А",
           "description": "",
           "image": "milk/matcha.jpg",
           "quantity": 0,
