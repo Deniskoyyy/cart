@@ -25,6 +25,20 @@
           "unit": "шт"
         },
         {
+          "name": "Сэндвич с салями",
+          "description": "",
+          "image": "sandwich/sandwich_salami.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сэндвич с бужениной",
+          "description": "",
+          "image": "sandwich/sandwich_pork.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
           "name": "Бейгл с курицей",
           "description": "",
           "image": "sandwich/bagel_chicken.jpg",
