@@ -65,6 +65,20 @@
           "image": "dessert/donut_caramel.jpg",
           "quantity": 0,
           "unit": "упак"
+        },
+        {
+          "name": "Пончик-донатс с начинкой манго",
+          "description": "",
+          "image": "dessert/donut_mango.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пончик-донатс орео",
+          "description": "",
+          "image": "dessert/donut_oreo.jpg",
+          "quantity": 0,
+          "unit": "упак"
         }
 
       ]
