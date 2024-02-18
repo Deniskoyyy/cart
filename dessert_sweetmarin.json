@@ -30,7 +30,7 @@
           "image": "dessert_sweetmarin/blueberry.jpg",
           "quantity": 0,
           "unit": "упак"
-        },
+        }
 
       ]
     },
@@ -124,7 +124,7 @@
         }
 
       ]
-    },
+    }
 
   ]
 }
