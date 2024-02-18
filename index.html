@@ -172,9 +172,10 @@
   <h1 style="text-align: center;">Заказы Coffee Like</h1>
 
   <div class="catContainer">
-  <button class="category-button" onclick="loadProductsFromJson('milk.json')">Вода и молоко</button>
-  <button class="category-button" onclick="loadProductsFromJson('dessert.json')">Десерты</button>
-  <button class="category-button" onclick="loadProductsFromJson('sandwich.json')">Сэндвичи</button>
+    <button class="category-button" onclick="loadProductsFromJson('milk.json')">Вода и молоко</button>
+    <button class="category-button" onclick="loadProductsFromJson('dessert_fantasy.json')">Десерты Dessert Fantasy</button>
+    <button class="category-button" onclick="loadProductsFromJson('dessert_sweetmarin.json')">Десерты SweetMarin</button>
+    <button class="category-button" onclick="loadProductsFromJson('sandwich.json')">Сэндвичи</button>
   </div>
 
   <div id="products">
@@ -403,7 +404,7 @@
           return;
         }
         selectedCoffeeShop += "\n\n";
-      } else if (currentTab === 'dessert.json') {
+      } else if (currentTab === 'dessert_fantasy.json' || currentTab === 'dessert_sweetmarin.json') {
         selectedCoffeeShop = "Десерты:\n\n"
       } else if (currentTab === 'sandwich.json') {
         selectedCoffeeShop = "Сэндвичи:\n\n"

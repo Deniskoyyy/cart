@@ -1,0 +1,134 @@
+{
+  "products": [
+    {
+      "category": "Торты",
+      "items": [
+        {
+          "name": "Торт «Фисташковый с малиной»",
+          "description": "",
+          "image": "dessert_fantasy/pistachio.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Торт «Эстерхази»",
+          "description": "",
+          "image": "dessert_fantasy/esterhazy.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк «Манго-маракуйя»",
+          "description": "",
+          "image": "dessert_fantasy/mango.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Торт Сметанник",
+          "description": "",
+          "image": "dessert_fantasy/smetannik.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Торт Морковный",
+          "description": "",
+          "image": "dessert_fantasy/carrot.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        }
+
+      ]
+    },
+
+    {
+      "category": "Пончики",
+      "items": [
+        {
+          "name": "Пончик-донатс с начинкой \"лесные ягоды\"",
+          "description": "",
+          "image": "dessert_fantasy/donut_berries.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пончик-донатс с шоколадной начинкой",
+          "description": "",
+          "image": "dessert_fantasy/donut_choco.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пончик-донатс с карамельной начинкой",
+          "description": "",
+          "image": "dessert_fantasy/donut_caramel.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пончик-донатс с начинкой манго",
+          "description": "",
+          "image": "dessert_fantasy/donut_mango.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пончик-донатс орео",
+          "description": "",
+          "image": "dessert_fantasy/donut_oreo.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        }
+
+      ]
+    },
+    {
+      "category": "Кукисы",
+      "items": [
+        {
+          "name": "Печенье Геркулес с изюмом",
+          "description": "",
+          "image": "dessert_fantasy/cookies_raisins.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Печенье 4 шоколада",
+          "description": "",
+          "image": "dessert_fantasy/cookies_choco.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        }
+
+      ]
+    },
+    {
+      "category": "Маффины",
+      "items": [
+        {
+          "name": "Маффин шоколадный",
+          "description": "",
+          "image": "dessert_fantasy/muffin.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        }
+
+      ]
+    },
+    {
+      "category": "Круассаны",
+      "items": [
+        {
+          "name": "Круассан с миндалем и миндальным кремом",
+          "description": "",
+          "image": "dessert_fantasy/croissant_almond.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        }
+
+      ]
+    }
+
+  ]
+}

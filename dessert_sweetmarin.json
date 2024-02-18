@@ -1,0 +1,130 @@
+{
+  "products": [
+    {
+      "category": "Пирожные",
+      "items": [
+        {
+          "name": "Пирожное Медовик",
+          "description": "",
+          "image": "dessert_sweetmarin/honey.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пирожное Красный бархат",
+          "description": "",
+          "image": "dessert_sweetmarin/red.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пирожное Шоколадно-карамельный",
+          "description": "",
+          "image": "dessert_sweetmarin/choco-caramel.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Пирожное Черничный пломбир",
+          "description": "",
+          "image": "dessert_sweetmarin/blueberry.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+
+      ]
+    },
+
+
+    {
+      "category": "Чизкейки",
+      "items": [
+        {
+          "name": "Чизкейк Шоколадный с вишней",
+          "description": "",
+          "image": "dessert_sweetmarin/choco-cherry.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк Орео",
+          "description": "",
+          "image": "dessert_sweetmarin/oreo.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк Клубничный",
+          "description": "",
+          "image": "dessert_sweetmarin/strawberry.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк Маракуйя",
+          "description": "",
+          "image": "dessert_sweetmarin/passion.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк Карамельный",
+          "description": "",
+          "image": "dessert_sweetmarin/caramel.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк микс Карамель и Клубника",
+          "description": "",
+          "image": "dessert_sweetmarin/caramel-strawberry.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк микс Орео и Маракуйя",
+          "description": "",
+          "image": "dessert_sweetmarin/oreo-passion.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Чизкейк микс 4 вкуса",
+          "description": "",
+          "image": "dessert_sweetmarin/mix.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        }
+
+      ]
+    },
+    {
+      "category": "Маффины",
+      "items": [
+        {
+          "name": "Маффин Яблочный с карамельной начинкой",
+          "description": "",
+          "image": "dessert_sweetmarin/apple.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Маффин Ванильный с черничной начинкой",
+          "description": "",
+          "image": "dessert_sweetmarin/vanilla.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        },
+        {
+          "name": "Маффин Шоколадный брауни",
+          "description": "",
+          "image": "dessert_sweetmarin/chocolate.jpg",
+          "quantity": 0,
+          "unit": "упак"
+        }
+
+      ]
+    },
+
+  ]
+}
