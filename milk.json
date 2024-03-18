@@ -46,16 +46,16 @@
           "unit": "шт"
         },
         {
-          "name": "Сок Добрый апельсиновый",
+          "name": "Сок Сады Придонья апельсиновый",
           "description": "",
-          "image": "milk/d_orange.jpg",
+          "image": "milk/sp_orange.jpg",
           "quantity": 0,
           "unit": "л"
         },
         {
-          "name": "Сок Добрый яблочный",
+          "name": "Сок Сады Придонья яблочный",
           "description": "",
-          "image": "milk/d_apple.jpg",
+          "image": "milk/sp_apple.jpg",
           "quantity": 0,
           "unit": "л"
         },
@@ -354,6 +354,13 @@
           "name": "Сироп Herbarista мята",
           "description": "",
           "image": "milk/mint.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        },
+        {
+          "name": "Сироп Herbarista фисташка",
+          "description": "",
+          "image": "milk/pistacho.jpg",
           "quantity": 0,
           "unit": "шт"
         },
