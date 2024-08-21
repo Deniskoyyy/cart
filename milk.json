@@ -46,9 +46,9 @@
           "unit": "шт"
         },
         {
-          "name": "Сок Сады Придонья апельсиновый",
+          "name": "Сок Добрый апельсиновый",
           "description": "",
-          "image": "milk/sp_orange.jpg",
+          "image": "milk/d_orange.jpg",
           "quantity": 0,
           "unit": "л"
         },
@@ -60,9 +60,9 @@
           "unit": "л"
         },
         {
-          "name": "Сок Сады Придонья вишнёвый",
+          "name": "Сок Il Primo вишнёвый",
           "description": "",
-          "image": "milk/sp_cherry.jpg",
+          "image": "milk/ip_cherry.jpg",
           "quantity": 0,
           "unit": "л"
         },
