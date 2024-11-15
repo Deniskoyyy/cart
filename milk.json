@@ -4,9 +4,9 @@
       "category": "Вода и молоко",
       "items": [
         {
-          "name": "Молоко Кружева 3,2%",
+          "name": "Молоко Хорошее дело 3,2%",
           "description": "Заказывать кратно 12 л (48, 60, 72 и т.д.)",
-          "image": "milk/milk.jpg",
+          "image": "milk/milk_hd.jpg",
           "quantity": 0,
           "unit": "л"
         },
@@ -46,23 +46,23 @@
           "unit": "шт"
         },
         {
-          "name": "Сок Сады Придонья апельсиновый",
+          "name": "Сок Добрый апельсиновый",
           "description": "",
-          "image": "milk/sp_orange.jpg",
+          "image": "milk/d_orange.jpg",
           "quantity": 0,
           "unit": "л"
         },
         {
-          "name": "Сок Сады Придонья яблочный",
+          "name": "Сок Добрый яблочный",
           "description": "",
-          "image": "milk/sp_apple.jpg",
+          "image": "milk/d_apple.jpg",
           "quantity": 0,
           "unit": "л"
         },
         {
-          "name": "Сок Сады Придонья вишнёвый",
+          "name": "Сок Il Primo вишнёвый",
           "description": "",
-          "image": "milk/sp_cherry.jpg",
+          "image": "milk/ip_cherry.jpg",
           "quantity": 0,
           "unit": "л"
         },
