@@ -4,9 +4,9 @@
       "category": "Вода и молоко",
       "items": [
         {
-          "name": "Молоко Хорошее дело 3,2%",
+          "name": "Молоко Вологодское 3,2%",
           "description": "Заказывать кратно 12 л (48, 60, 72 и т.д.)",
-          "image": "milk/milk_hd.jpg",
+          "image": "milk/milk_vol.jpg",
           "quantity": 0,
           "unit": "л"
         },
