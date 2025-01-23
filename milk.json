@@ -11,6 +11,13 @@
           "unit": "л"
         },
         {
+          "name": "Молоко безлактозное",
+          "description": "",
+          "image": "milk/milk_lac_free.jpg",
+          "quantity": 0,
+          "unit": "л"
+        },
+        {
           "name": "Сливки Свежее Завтра 10%",
           "description": "Заказывать кратно 12 л (12, 24 и т.д.)",
           "image": "milk/sz_cream.jpg",
