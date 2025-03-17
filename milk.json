@@ -4,9 +4,9 @@
       "category": "Вода и молоко",
       "items": [
         {
-          "name": "Молоко Вологодское 3,2%",
+          "name": "Молоко Эконива 3,2%",
           "description": "Заказывать кратно 12 л (48, 60, 72 и т.д.)",
-          "image": "milk/milk_vol.jpg",
+          "image": "milk/milk_econiva.jpg",
           "quantity": 0,
           "unit": "л"
         },
