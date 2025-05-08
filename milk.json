@@ -1,6 +1,19 @@
 {
   "products": [
     {
+      "category": "Кофе",
+      "items": [
+        {
+          "name": "Кофе 1кг",
+          "description": "",
+          "image": "coffee/coffee1kg.jpg",
+          "quantity": 0,
+          "unit": "шт"
+        }
+      ]
+    },
+
+    {
       "category": "Вода и молоко",
       "items": [
         {
