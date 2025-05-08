@@ -297,7 +297,7 @@
           productElement.classList.add("product");
 
           var imageElement = document.createElement("img");
-          imageElement.src = item.image;
+          imageElement.src = getImagePath(item.image);
           productElement.appendChild(imageElement);
 
           var detailsElement = document.createElement("div");
@@ -526,6 +526,14 @@
       });
 
       return unit;
+    }
+
+    function getImagePath(relativePath) {
+      // Если страница запущена из подпапки (leftovers), добавляем '../'
+      if (window.location.pathname.includes('/leftovers/')) {
+        return '../' + relativePath;
+      }
+      return relativePath;
     }
 
   </script>
