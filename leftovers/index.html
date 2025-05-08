@@ -1,31 +1,534 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Остатки на складе</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Остатки</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../config.js"></script>
+  <style>
+  /* Стили для контейнера */
+  #container {
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* Стили для категорий */
+  .category {
+    margin-bottom: 20px;
+  }
+
+  /* Стили для товаров */
+  .product {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  /* Стили для изображений товаров */
+  .product img {
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+
+  /* Стили для деталей товаров */
+  .product-details {
+    flex-grow: 1;
+    padding-left: 10px;
+  }
+
+  /* Стили для полей ввода количества */
+  .quantity-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .quantity-input button {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+  }
+
+  .quantity-input input {
+    width: 60px;
+    height: 24px;
+    font-size: 24px;
+  }
+  /* Стили для заказа и магазина */
+  #coffee-shop,
+  #order-button {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 10px;
+  }
+
+    /* Стили для кнопок */
+  .order-button {
+    display: none;
+    width: 200px; /* Ширина кнопки "Сформировать заказ" */
+    height: 50px; /* Высота кнопки "Сформировать заказ" */
+    font-size: 18px; /* Размер шрифта кнопки "Сформировать заказ" */
+    margin: 10px 0;
+  }
+
+  .copy-order-button {
+    width: 200px; /* Ширина кнопки "Скопировать заказ" */
+    height: 50px; /* Высота кнопки "Скопировать заказ" */
+    font-size: 18px; /* Размер шрифта кнопки "Скопировать заказ" */
+  }
+
+  .btn-telegram {
+    display: none;
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+    /* Стили для рамки с результатом заказа */
+  #order-summary {
+    display: none; /* Скрыть рамку по умолчанию */
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+  }
+
+  .form-group label[for="coffee-shop"] {
+    font-weight: bold; /* Делаем шрифт жирным */
+  }
+
+  /* Стили для элементов "вверх" и "вниз" */
+  .scroll-to-top {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    display: none; /* Начально скрываем элемент */
+  }
+
+  .scroll-to-bottom {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .category-button {
+    font-size: 18px;
+    width: 120px;
+    height: 75px;
+  }
+
+  .catContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Цвет фона */
+
+  body {
+    background-color: #ffffff; /* #ffffff представляет белый цвет */
+  }
+
+
+  /*body {*/
+  /*  background-image: url("bg/bg.avif");*/
+  /*}*/
+
+  /* Медиа-запрос для мобильных устройств */
+  @media (max-width: 480px) {
+    #container {
+      padding: 5px;
+    }
+
+    .product {
+      flex-direction: column;
+    }
+
+    .product img {
+      width: auto;
+      height: auto;
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+
+    .product-details {
+      padding-left: 0;
+    }
+  }
+</style>
+
 </head>
+<div id="container">
 <body>
-  <h1>Форма отправки остатков</h1>
-  <form id="leftovers-form">
-    <label>
-      Название:
-      <input type="text" name="item" required />
-    </label><br />
-    <label>
-      Количество:
-      <input type="number" name="quantity" required />
-    </label><br />
-    <button type="submit">Отправить</button>
-  </form>
+
+  <h1 style="text-align: center;">Остатки Coffee Like</h1>
+
+  <div class="catContainer">
+    <button class="category-button" onclick="loadProductsFromJson('../milk.json')">Вода и молоко</button>
+    <button class="category-button" onclick="loadProductsFromJson('../dessert_fantasy.json')">Десерты Dessert Fantasy</button>
+<!--    <button class="category-button" onclick="loadProductsFromJson('../dessert_sweetmarin.json')">Десерты SweetMarin</button>-->
+<!--    <button class="category-button" onclick="loadProductsFromJson('../sandwich.json')">Сэндвичи</button>-->
+  </div>
+
+  <div id="products">
+    <!-- Здесь будут отображаться товары -->
+  </div>
+
+  <div id="coffeeShopFormGroup" class="form-group">
+    <label for="coffee-shop">В какой кофейне считаем остатки:</label>
+    <select id="coffee-shop" required>
+      <option value="" disabled selected>Выберите кофейню</option>
+      <option value="Охта Молл, 3 этаж:">Охта Молл, 3 этаж</option>
+      <option value="Фудтрак:">Фудтрак</option>
+    </select>
+  </div>
+
+  <div id="order-summary" ></div>
+  <button class="order-button" id="orderButton" onclick="makeOrder()">Сформировать остатки</button>
+
+<!--  <div id="order-result"></div>-->
+<!--  <button class="copy-order-button" onclick="copyOrderToClipboard()">Скопировать заказ</button>-->
+
+  <div id="telegramButtonContainer">
+  <!-- Кнопка для отправки заказа через Telegram -->
+  <button class="btn-telegram" id="telegramButton" onclick="sendTelegramOrder()">Отправить через Telegram</button>
+  </div>
+
+  <div id="scroll-to-top" class="scroll-to-top">⬆️</div>
+  <div id="scroll-to-bottom" class="scroll-to-bottom">⬇️</div>
 
   <script>
-    document.getElementById('leftovers-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const item = e.target.item.value;
-      const quantity = e.target.quantity.value;
-      alert(`Отправлено: ${item} — ${quantity}`);
-    });
+
+    var currentTab = "";
+    var confirmMessage = "Точно перепроверили остатки?\n\nОтправляем?";
+
+    loadProductsFromJson('../milk.json')
+
+    window.onscroll = function() {
+      var scrollToTop = document.getElementById("scroll-to-top");
+      var scrollToBottom = document.getElementById("scroll-to-bottom");
+
+      if (document.documentElement.scrollTop > 0) {
+        scrollToTop.style.display = "block";
+      } else {
+        scrollToTop.style.display = "none";
+      }
+
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        scrollToBottom.style.display = "none";
+      } else {
+        scrollToBottom.style.display = "block";
+      }
+    }
+
+    // Обработчики клика по элементам "вверх" и "вниз"
+    document.getElementById("scroll-to-top").addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    })
+
+    document.getElementById("scroll-to-bottom").addEventListener("click", function() {
+      window.scrollTo({
+        top: document.body.offsetHeight,
+        behavior: "smooth"
+      });
+    })
+
+    // Функция для загрузки информации о товарах из файла products.json
+    function loadProductsFromJson(jsonFile) {
+      $.ajax({
+        url: jsonFile,
+        dataType: 'json',
+        success: function(data) {
+          productsData = data.products;
+          displayProducts();
+        },
+        error: function() {
+          alert('Ошибка при загрузке данных о товарах.');
+        }
+      });
+
+      currentTab = jsonFile.split('/').pop();
+
+      telegramButton.disabled = false;
+      telegramButton.innerText = "Отправить через Telegram";
+      telegramButton.style.display = "none";
+      orderButton.style.display = "block";
+      var orderSummary = document.getElementById("order-summary");
+      orderSummary.style.display = "none";
+      if (currentTab === 'milk.json') {
+        coffeeShopFormGroup.style.display = "block"
+      } else {
+        coffeeShopFormGroup.style.display = "none"
+      }
+    }
+
+
+    // Функция для отображения товаров
+    function displayProducts() {
+      var productsContainer = document.getElementById("products");
+      productsContainer.innerHTML = ""; // Очистка контейнера перед отображением новых данных
+
+      productsData.forEach(function(category) {
+        var categoryElement = document.createElement("div");
+        categoryElement.classList.add("category");
+
+        var categoryTitle = document.createElement("h2");
+        categoryTitle.classList.add("category-title");
+        categoryTitle.innerText = category.category;
+        categoryTitle.style.textAlign = "center";
+        categoryElement.appendChild(categoryTitle);
+
+        var categoryContent = document.createElement("div");
+        categoryContent.classList.add("category-content");
+
+        category.items.forEach(function(item) {
+          var productElement = document.createElement("div");
+          productElement.classList.add("product");
+
+          var imageElement = document.createElement("img");
+          imageElement.src = item.image;
+          productElement.appendChild(imageElement);
+
+          var detailsElement = document.createElement("div");
+          detailsElement.classList.add("product-details");
+
+          var nameElement = document.createElement("div");
+          nameElement.classList.add("product-name");
+          nameElement.innerText = item.name;
+          nameElement.style.fontWeight = "bold";
+          detailsElement.appendChild(nameElement);
+
+          var descriptionElement = document.createElement("div");
+          descriptionElement.innerText = item.description;
+          detailsElement.appendChild(descriptionElement);
+
+          var quantityElement = document.createElement("div");
+          quantityElement.innerText = "Количество (" + item.unit + "):";
+
+          var quantityInput = document.createElement("input");
+          quantityInput.type = "number";
+          quantityInput.value = item.quantity;
+          quantityInput.min = "0";
+
+          var decreaseButton = document.createElement("button");
+          decreaseButton.innerText = "-";
+          decreaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 0) {
+              quantityInput.value = currentValue - 1;
+            }
+          });
+
+          var increaseButton = document.createElement("button");
+          increaseButton.innerText = "+";
+          increaseButton.addEventListener("click", function() {
+            var currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+          });
+
+          var quantityInputGroup = document.createElement("div");
+          quantityInputGroup.classList.add("quantity-input");
+          quantityInputGroup.appendChild(decreaseButton);
+          quantityInputGroup.appendChild(quantityInput);
+          quantityInputGroup.appendChild(increaseButton);
+
+          quantityElement.appendChild(quantityInputGroup);
+          detailsElement.appendChild(quantityElement);
+
+          // Добавление поля выбора количества товара на возврат
+          if (currentTab === 'sandwich.json') {
+            var returnQuantityElement = document.createElement("div");
+            returnQuantityElement.innerText = "Количество на возврат (" + item.unit + "):";
+
+            var returnQuantityInput = document.createElement("input");
+            returnQuantityInput.type = "number";
+            returnQuantityInput.value = item.returnQuantity || 0; // Изменено здесь
+            returnQuantityInput.min = "0";
+
+            var decreaseReturnButton = document.createElement("button");
+            decreaseReturnButton.innerText = "-";
+            decreaseReturnButton.addEventListener("click", function () {
+              var currentValue = parseInt(returnQuantityInput.value);
+              if (currentValue > 0) {
+                returnQuantityInput.value = currentValue - 1;
+              }
+            });
+
+            var increaseReturnButton = document.createElement("button");
+            increaseReturnButton.innerText = "+";
+            increaseReturnButton.addEventListener("click", function () {
+              var currentValue = parseInt(returnQuantityInput.value);
+              returnQuantityInput.value = currentValue + 1;
+            });
+
+            var returnQuantityInputGroup = document.createElement("div");
+            returnQuantityInputGroup.classList.add("quantity-input");
+            returnQuantityInputGroup.appendChild(decreaseReturnButton);
+            returnQuantityInputGroup.appendChild(returnQuantityInput);
+            returnQuantityInputGroup.appendChild(increaseReturnButton);
+
+            returnQuantityElement.appendChild(returnQuantityInputGroup);
+            detailsElement.appendChild(returnQuantityElement);
+
+          }
+
+          productElement.appendChild(detailsElement);
+          categoryContent.appendChild(productElement);
+        });
+
+        categoryElement.appendChild(categoryContent);
+        productsContainer.appendChild(categoryElement);
+      });
+    }
+
+    // Функция для создания заказа
+    function makeOrder() {
+
+      var coffeeShopSelect = document.getElementById("coffee-shop");
+      var selectedCoffeeShop = coffeeShopSelect.value;
+
+      if (currentTab === 'milk.json') {
+        if (selectedCoffeeShop === "") {
+          alert("Пожалуйста, выберите кофейню.");
+          return;
+        }
+        selectedCoffeeShop += "\n\n";
+      } else if (currentTab === 'dessert_fantasy.json' || currentTab === 'dessert_sweetmarin.json') {
+        selectedCoffeeShop = "Десерты:\n\n"
+      } else if (currentTab === 'sandwich.json') {
+        selectedCoffeeShop = "Сэндвичи:\n\n"
+      }
+
+      var orderSummary = document.getElementById("order-summary");
+      orderSummary.innerHTML = ""; // Очистка предыдущего заказа
+
+      var selectedProducts = [];
+      if (currentTab === 'sandwich.json') {
+        var returnProducts = [];
+      }
+      var productElements = document.getElementsByClassName("product");
+
+      Array.from(productElements).forEach(function (productElement) {
+        var nameElement = productElement.getElementsByClassName("product-name")[0];
+        var quantityInput = productElement.getElementsByTagName("input")[0];
+
+        var productName = nameElement.innerText;
+        var quantity = parseInt(quantityInput.value);
+
+        if (quantity > 0) {
+          selectedProducts.push({ name: productName, quantity: quantity });
+        }
+
+        if (currentTab === 'sandwich.json') {
+          var returnQuantityInput = productElement.getElementsByTagName("input")[1];
+          var returnQuantity = parseInt(returnQuantityInput.value);
+          if (returnQuantity > 0) {
+          returnProducts.push({ name: productName, returnQuantity: returnQuantity });
+          }
+
+        }
+      });
+
+      orderSummary.style.display = "block";
+
+      if (selectedProducts.length === 0) {
+        orderSummary.innerText = "Ваш заказ пуст.";
+      } else {
+        var summaryText = selectedCoffeeShop;
+
+        selectedProducts.forEach(function (product) {
+          summaryText += product.name + " - " + product.quantity + " " + getProductUnit(product.name) + "\n";
+        });
+
+        if (currentTab === 'sandwich.json') {
+          if (returnProducts.length > 0) {
+            summaryText += "\n\nТовары на возврат:\n\n";
+            returnProducts.forEach(function (returnProduct) {
+              summaryText += returnProduct.name + " - " + returnProduct.returnQuantity + " " + getProductUnit(returnProduct.name) + "\n";
+            });
+          }
+        }
+
+        orderSummary.innerText = summaryText;
+
+        // Отображение кнопки Telegram после формирования заказа
+        telegramButton.style.display = "block";
+      }
+    }
+
+
+    // Функция для копирования заказа
+
+    // function copyOrderToClipboard() {
+    // var orderSummary = document.getElementById("order-summary").innerText;
+    //   navigator.clipboard.writeText(orderSummary).then(function() {
+    //     alert("Заказ скопирован в буфер обмена.");
+    //   }, function() {
+    //     alert("Не удалось скопировать заказ.");
+    //   });
+    //  }
+
+    // Функция для отправки заказа в телеграм
+
+    function sendTelegramOrder() {
+      // Запрос подтверждения выполнения запроса
+      var confirmed = confirm(confirmMessage);
+      if (confirmed) {
+
+        var telegramButton = document.getElementById("telegramButton");
+        telegramButton.disabled = true; // Делаем кнопку неактивной
+        telegramButton.innerText = "Отправка..."; // Меняем текст кнопки на "Отправка..."
+
+        var message = document.getElementById("order-summary").innerText;
+        message = "```\n" + message + "\n```"
+
+        $.ajax({
+          url: telegramUrl,
+          method: 'POST',
+          data: {
+            chat_id: chatId,
+            message_thread_id: '2',
+            text: message,
+            parse_mode: 'Markdown'
+          },
+          success: function (response) {
+            telegramButton.innerText = "Отправлено"; // Меняем текст кнопки на "Отправлено" при успешной отправке
+          },
+          error: function (error) {
+            telegramButton.innerText = "Ошибка"; // Меняем текст кнопки на "Ошибка" при ошибке отправки
+          }
+        });
+      };
+    }
+
+
+    // Вспомогательная функция для получения единицы измерения товара
+    function getProductUnit(productName) {
+      var unit = "";
+
+      productsData.forEach(function(category) {
+        category.items.forEach(function(item) {
+          if (item.name === productName) {
+            unit = item.unit;
+          }
+        });
+      });
+
+      return unit;
+    }
+
   </script>
 </body>
+</div>
 </html>

@@ -258,7 +258,7 @@
         }
       });
 
-      currentTab = jsonFile;
+      currentTab = jsonFile.split('/').pop();
 
       telegramButton.disabled = false;
       telegramButton.innerText = "Отправить через Telegram";
