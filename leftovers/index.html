@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Остатки на складе</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <h1>Форма отправки остатков</h1>
+  <form id="leftovers-form">
+    <label>
+      Название:
+      <input type="text" name="item" required />
+    </label><br />
+    <label>
+      Количество:
+      <input type="number" name="quantity" required />
+    </label><br />
+    <button type="submit">Отправить</button>
+  </form>
+
+  <script>
+    document.getElementById('leftovers-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const item = e.target.item.value;
+      const quantity = e.target.quantity.value;
+      alert(`Отправлено: ${item} — ${quantity}`);
+    });
+  </script>
+</body>
+</html>
